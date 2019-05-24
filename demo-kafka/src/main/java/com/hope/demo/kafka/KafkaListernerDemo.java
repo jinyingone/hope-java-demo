@@ -1,5 +1,6 @@
 package com.hope.demo.kafka;
 
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,5 +11,13 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public class KafkaListernerDemo {
-
+    /**
+     * 消费配置
+     *
+     * @param msg
+     */
+    @KafkaListener(groupId = "demo", topics = {"sns_hycs_anal_log_test"}, containerFactory = "demoKafkaListererFactory")
+    public void listen(String msg) {
+        System.out.println(msg);
+    }
 }

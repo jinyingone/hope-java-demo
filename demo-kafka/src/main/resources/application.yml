@@ -1,0 +1,16 @@
+#spring:
+#  kafka:
+#    bootstrap-servers: 127.0.0.1:9092,10.1.1.1:9092
+#    consumer:
+#      group-id: demotest
+#      enable-auto-commit: true
+#      auto-offset-reset: latest
+#    listener:
+#      concurrency: 2
+#      ack-mode: batch
+
+####自定义配置
+hope:
+  demo:
+    kafka:
+      bootstrap-servers: 127.0.0.1:9092,10.1.1.1:9092
