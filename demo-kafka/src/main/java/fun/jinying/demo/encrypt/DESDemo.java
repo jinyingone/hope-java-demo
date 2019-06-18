@@ -38,7 +38,7 @@ public class DESDemo {
     }
 
     public static String encAndBase64(String content) {
-        return new String(Base64.getEncoder().encode(encrypt(content)));
+        return Base64.getEncoder().encodeToString(encrypt(content));
     }
 
     /**
@@ -49,12 +49,11 @@ public class DESDemo {
      */
     public static String decrypt(byte[] content) {
         try {
-            SecureRandom secureRandom = new SecureRandom();
             DESKeySpec desKeySpec = new DESKeySpec(DES_KEY.getBytes());
             SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance("DES");
             SecretKey secretKey = secretKeyFactory.generateSecret(desKeySpec);
             Cipher cipher = Cipher.getInstance("DES");
-            cipher.init(Cipher.DECRYPT_MODE, secretKey, secureRandom);
+            cipher.init(Cipher.DECRYPT_MODE, secretKey);
             byte[] bytes = cipher.doFinal(content);
             return new String(bytes);
         } catch (Exception e) {
