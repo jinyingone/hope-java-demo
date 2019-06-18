@@ -1,3 +1,5 @@
+package fun.jinying.demo;
+
 import fun.jinying.demo.kafka.DemoApplication;
 import fun.jinying.demo.kafka.KafkaSenderDemo;
 import org.junit.Test;
