@@ -1,4 +1,4 @@
-package com.hope.demo.kafka;
+package fun.jinying.demo.kafka;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

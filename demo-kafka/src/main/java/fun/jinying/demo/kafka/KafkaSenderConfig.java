@@ -1,4 +1,4 @@
-package com.hope.demo.kafka;
+package fun.jinying.demo.kafka;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;

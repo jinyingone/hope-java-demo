@@ -1,4 +1,4 @@
-package com.hope.demo.kafka;
+package fun.jinying.demo.kafka;
 
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;

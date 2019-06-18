@@ -1,4 +1,4 @@
-package com.hope.demo.kafka;
+package fun.jinying.demo.kafka;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;

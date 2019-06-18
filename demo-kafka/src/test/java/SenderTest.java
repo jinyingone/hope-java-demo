@@ -1,5 +1,5 @@
-import com.hope.demo.kafka.DemoApplication;
-import com.hope.demo.kafka.KafkaSenderDemo;
+import fun.jinying.demo.kafka.DemoApplication;
+import fun.jinying.demo.kafka.KafkaSenderDemo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
