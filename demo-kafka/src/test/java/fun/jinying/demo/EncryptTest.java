@@ -2,6 +2,7 @@ package fun.jinying.demo;
 
 import fun.jinying.demo.encrypt.AESDemo;
 import fun.jinying.demo.encrypt.DESDemo;
+import fun.jinying.demo.encrypt.RSADemo;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -36,5 +37,12 @@ public class EncryptTest {
     public void testAESDec() {
         String key = "0123456789abcdef";
         Assert.assertEquals(AESDemo.decrypt(key, "Q0BNhRPR8AwNqhVldAS4aA=="), "123");
+    }
+
+    @Test
+    public void testRSA() {
+        RSADemo.KeyPairString keyPair = RSADemo.getKeyPair();
+        Assert.assertEquals(RSADemo.decrypt(keyPair.getPrivateKey()
+                , RSADemo.encrypt(keyPair.getPublicKey(), "123")), "123");
     }
 }

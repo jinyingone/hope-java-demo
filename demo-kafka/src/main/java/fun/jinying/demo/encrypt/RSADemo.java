@@ -1,8 +1,9 @@
 package fun.jinying.demo.encrypt;
 
-import sun.security.rsa.RSAKeyFactory;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import sun.security.rsa.RSAPrivateCrtKeyImpl;
-import sun.security.rsa.RSAPrivateKeyImpl;
 import sun.security.rsa.RSAPublicKeyImpl;
 
 import javax.crypto.Cipher;
@@ -24,7 +25,7 @@ public class RSADemo {
     //最小值512
     public static final int KEY_SIZE = 512;
 
-    public static String encrypt(PublicKey publicKey, String input) {
+    private static String encrypt(PublicKey publicKey, String input) {
         try {
             Cipher cipher = Cipher.getInstance(TANSFORM_RSA_CFB_PKCS5PADDING);
             cipher.init(Cipher.ENCRYPT_MODE, publicKey);
@@ -56,18 +57,29 @@ public class RSADemo {
         }
     }
 
-    public static KeyPair genKeyPair() throws NoSuchAlgorithmException {
-        KeyPairGenerator kpg = KeyPairGenerator.getInstance(ALGORITHM);
-        kpg.initialize(KEY_SIZE, new SecureRandom());
-        java.security.KeyPair keyPair = kpg.genKeyPair();
-        return keyPair;
+    private static KeyPair genKeyPair() {
+        try {
+            KeyPairGenerator kpg = KeyPairGenerator.getInstance(ALGORITHM);
+            kpg.initialize(KEY_SIZE, new SecureRandom());
+            KeyPair keyPair = kpg.genKeyPair();
+            return keyPair;
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-
-    public static void main(String[] args) throws NoSuchAlgorithmException {
+    public static KeyPairString getKeyPair() {
         KeyPair keyPair = genKeyPair();
-        String encrypt = encrypt(Base64.getEncoder().encodeToString(keyPair.getPublic().getEncoded()), "123456");
-        System.out.println(encrypt);
-        System.out.println(decrypt(Base64.getEncoder().encodeToString(keyPair.getPrivate().getEncoded()), encrypt));
+        return new KeyPairString(Base64.getEncoder().encodeToString(keyPair.getPrivate().getEncoded()),
+                Base64.getEncoder().encodeToString(keyPair.getPublic().getEncoded()));
     }
+
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    public static class KeyPairString {
+        private String privateKey;
+        private String publicKey;
+    }
+
 }
