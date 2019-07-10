@@ -5,6 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>demo-kafka</module>
+        <module>demo-activemq</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

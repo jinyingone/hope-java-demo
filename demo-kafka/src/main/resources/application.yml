@@ -14,3 +14,6 @@ hope:
   demo:
     kafka:
       bootstrap-servers: 127.0.0.1:9092,10.1.1.1:9092
+spring:
+  activemq:
+    broker-url: tcp://jms1.ugcvideo.tv.sohuno.com:61616
