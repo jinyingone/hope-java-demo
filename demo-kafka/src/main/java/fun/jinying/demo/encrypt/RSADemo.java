@@ -3,14 +3,14 @@ package fun.jinying.demo.encrypt;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import sun.security.rsa.RSAPrivateCrtKeyImpl;
-import sun.security.rsa.RSAPublicKeyImpl;
 
 import javax.crypto.Cipher;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 /**
@@ -37,7 +37,8 @@ public class RSADemo {
 
     public static String encrypt(String publicKey, String input) {
         try {
-            RSAPublicKey rsaPublicKey = new RSAPublicKeyImpl(Base64.getDecoder().decode(publicKey));
+            RSAPublicKey rsaPublicKey = (RSAPublicKey) KeyFactory.getInstance("RSA").generatePublic(
+                    new X509EncodedKeySpec(Base64.getDecoder().decode(publicKey)));
             Cipher cipher = Cipher.getInstance(TANSFORM_RSA_CFB_PKCS5PADDING);
             cipher.init(Cipher.ENCRYPT_MODE, rsaPublicKey);
             return Base64.getEncoder().encodeToString(cipher.doFinal(input.getBytes()));
@@ -48,7 +49,8 @@ public class RSADemo {
 
     public static String decrypt(String privateKey, String input) {
         try {
-            RSAPrivateKey rsaPrivateKey = RSAPrivateCrtKeyImpl.newKey(Base64.getDecoder().decode(privateKey));
+            RSAPrivateKey rsaPrivateKey = (RSAPrivateKey) KeyFactory.getInstance("RSA").generatePrivate(
+                    new PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKey)));
             Cipher cipher = Cipher.getInstance(TANSFORM_RSA_CFB_PKCS5PADDING);
             cipher.init(Cipher.DECRYPT_MODE, rsaPrivateKey);
             return new String(cipher.doFinal(Base64.getDecoder().decode(input.getBytes(StandardCharsets.UTF_8))));
