@@ -8,6 +8,7 @@ import java.io.IOException;
 /**
  * jackson
  * 参考文档:
+ * https://github.com/FasterXML/jackson-databind/
  *
  * @author jy
  * @date 2019-08-29 下午5:18
