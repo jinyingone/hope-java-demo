@@ -7,6 +7,7 @@
         <module>demo-kafka</module>
         <module>demo-activemq</module>
         <module>demo-json</module>
+        <module>demo-little-error</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
