@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * 常见的流错误
+ * 常见的null错误
  *
  * @author jy
  * @date 2019-10-21 下午5:03
