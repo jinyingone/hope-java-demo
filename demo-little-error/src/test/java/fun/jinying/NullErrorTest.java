@@ -20,4 +20,10 @@ public class NullErrorTest {
         NullPointerException nullPointerException = Assertions.assertThrows(NullPointerException.class, () -> nullError.dataEmpty());
         System.out.println(nullPointerException);
     }
+
+    @Test
+    public void autoBox() {
+        NullPointerException nullPointerException = Assertions.assertThrows(NullPointerException.class, () -> nullError.autoUnBox());
+        System.out.println(nullPointerException);
+    }
 }

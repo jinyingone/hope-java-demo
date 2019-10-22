@@ -1,5 +1,7 @@
 package fun.jinying;
 
+import lombok.Data;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -31,5 +33,25 @@ public class NullError {
 
     private String getFromDB(String id) {
         return null;
+    }
+
+    /**
+     * 包装类型自动拆箱
+     * 推荐pojo尽量使用包装类
+     */
+    public void autoUnBox() {
+        User user = new User();
+        Student student = new Student();
+        student.setId(user.getId());
+    }
+
+    @Data
+    private class User {
+        Long id;
+    }
+
+    @Data
+    private class Student {
+        long id;
     }
 }
