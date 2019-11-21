@@ -8,6 +8,7 @@
         <module>demo-activemq</module>
         <module>demo-json</module>
         <module>demo-little-error</module>
+        <module>demo-bloomfilter</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -23,6 +24,16 @@
     <properties>
         <java.version>1.8</java.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>28.0-jre</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
