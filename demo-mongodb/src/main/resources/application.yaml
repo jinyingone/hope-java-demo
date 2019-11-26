@@ -1,0 +1,7 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://test1:test1@10.16.70.244:27017/test1
+      authentication-database: test1
+server:
+  port: -1
