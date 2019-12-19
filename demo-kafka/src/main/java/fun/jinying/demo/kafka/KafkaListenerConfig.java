@@ -24,7 +24,7 @@ public class KafkaListenerConfig {
     private String bootstrapServers;
 
     @Bean
-    public KafkaListenerContainerFactory demoKafkaListererFactory() {
+    public KafkaListenerContainerFactory demoKafkaListenerFactory() {
         Map<String, Object> kafkaConfig = new HashMap<>();
         kafkaConfig.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         kafkaConfig.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);

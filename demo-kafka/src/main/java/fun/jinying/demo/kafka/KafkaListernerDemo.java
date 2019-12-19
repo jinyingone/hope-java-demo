@@ -16,7 +16,7 @@ public class KafkaListernerDemo {
      *
      * @param msg
      */
-    @KafkaListener(groupId = "demo", topics = {"sns_hycs_anal_log_test"}, containerFactory = "demoKafkaListererFactory")
+    @KafkaListener(groupId = "demo", topics = {"sns_hycs_anal_log_test"}, containerFactory = "demoKafkaListenerFactory")
     public void listen(String msg) {
         System.out.println(msg);
     }
