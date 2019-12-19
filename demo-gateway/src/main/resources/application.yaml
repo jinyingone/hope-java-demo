@@ -1,0 +1,13 @@
+server:
+  port: 8080
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: baidu
+          uri: dubbo://com.sohu.sns.profile.service.api.ProfileHomelineApi
+          predicates:
+            - Path=/baidu
+            - Method=GET
+          filters:
+            - AddRequestParameter=wd,baidu
