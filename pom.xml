@@ -11,6 +11,7 @@
         <module>demo-bloomfilter</module>
         <module>demo-mongodb</module>
         <module>demo-gateway</module>
+        <module>demo-es</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
