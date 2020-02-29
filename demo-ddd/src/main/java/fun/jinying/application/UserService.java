@@ -14,7 +14,7 @@ public interface UserService {
     /**
      * 注册
      *
-     * @param phone   手机号
+     * @param phone 手机号
      * @return
      */
     User register(String phone);
@@ -26,4 +26,11 @@ public interface UserService {
      * @return
      */
     Optional<User> getRegisteredUser(String phone);
+
+    /**
+     * 用户登录
+     *
+     * @param user
+     */
+    void login(User user);
 }

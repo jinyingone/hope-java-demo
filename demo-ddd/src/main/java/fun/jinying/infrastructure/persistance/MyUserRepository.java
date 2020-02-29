@@ -63,7 +63,7 @@ public class MyUserRepository implements UserRepository {
          * @param phone 手机号
          * @return
          */
-        @Select("select user_id,user_name,avatar,create_time,update_time from user where phone=#{phone}")
+        @Select("select user_id,user_name,avatar,phone,create_time,update_time from user where phone=#{phone}")
         User getByPhone(@Param("phone") String phone);
     }
 

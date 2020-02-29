@@ -20,7 +20,11 @@ public class UserController {
 
     @RequestMapping("/register")
     public UserDTO register(@Validated UserRegisterCmd cmd) {
-        UserDTO register = userServiceFacade.register(cmd.getPhone(), cmd.getSmsCode());
-        return register;
+        return userServiceFacade.register(cmd.getPhone(), cmd.getSmsCode());
+    }
+
+    @RequestMapping("/login")
+    public UserDTO login(@Validated UserLoginCmd cmd) {
+        return userServiceFacade.login(cmd.getPhone(), cmd.getSmsCode());
     }
 }

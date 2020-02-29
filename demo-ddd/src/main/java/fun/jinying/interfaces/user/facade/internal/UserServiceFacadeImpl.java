@@ -37,4 +37,14 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
         UserDTOAssembler dtoAssembler = new UserDTOAssembler();
         return dtoAssembler.toDTO(user);
     }
+
+    @Override
+    public UserDTO login(String phone, int smsCode) {
+        if (!smsService.verifyCode(phone, smsCode)) {
+            throw new InterfaceException(InterfaceStatusEnum.USER_LOGIN_FAIL_CODE);
+        }
+        User user = userService.getRegisteredUser(phone).orElseThrow(() -> new InterfaceException(InterfaceStatusEnum.USER_LOGIN_FAIL_NOT_EXISTS));
+        userService.login(user);
+        return new UserDTOAssembler().toDTO(user);
+    }
 }

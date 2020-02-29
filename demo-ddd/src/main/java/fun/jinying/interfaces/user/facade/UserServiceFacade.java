@@ -16,4 +16,13 @@ public interface UserServiceFacade {
      * @return
      */
     UserDTO register(String phone, int smsCode);
+
+    /**
+     * 登录
+     *
+     * @param phone
+     * @param smsCode
+     * @return
+     */
+    UserDTO login(String phone, int smsCode);
 }

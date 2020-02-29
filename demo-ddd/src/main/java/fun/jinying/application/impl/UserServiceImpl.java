@@ -36,4 +36,9 @@ public class UserServiceImpl implements UserService {
     public Optional<User> getRegisteredUser(String phone) {
         return userRepository.getByPhone(phone);
     }
+
+    @Override
+    public void login(User user) {
+        // TODO: 20-2-29发送事件
+    }
 }

@@ -23,8 +23,9 @@ public enum InterfaceStatusEnum {
      * 用户相关错误
      */
     USER_REGISTER_FAIL_EXISTS(301, "注册失败,手机号已存在"),
-
-    USER_REGISTER_FAIL_CODE(302, "注册失败,验证码错误");
+    USER_REGISTER_FAIL_CODE(302, "注册失败,验证码错误"),
+    USER_LOGIN_FAIL_CODE(303, "登录失败,验证码错误"),
+    USER_LOGIN_FAIL_NOT_EXISTS(304, "登录失败,用户不存在");
 
 
     private int value;
