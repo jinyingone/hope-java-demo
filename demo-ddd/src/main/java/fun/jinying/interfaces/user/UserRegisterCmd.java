@@ -9,7 +9,12 @@ import lombok.Data;
  **/
 @Data
 public class UserRegisterCmd {
-    private String userName;
-    private String avatar;
-    private String password;
+    /**
+     * 手机号
+     */
+    private String phone;
+    /**
+     * 短信验证码
+     */
+    private String smsCode;
 }

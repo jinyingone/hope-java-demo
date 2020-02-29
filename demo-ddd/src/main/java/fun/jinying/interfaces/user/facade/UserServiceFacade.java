@@ -1,7 +1,6 @@
 package fun.jinying.interfaces.user.facade;
 
 import fun.jinying.interfaces.user.facade.dto.UserDTO;
-import org.springframework.stereotype.Component;
 
 /**
  * @description: 用户facade
@@ -10,12 +9,11 @@ import org.springframework.stereotype.Component;
  **/
 public interface UserServiceFacade {
     /**
-     * 注册
+     * 手机
      *
-     * @param userName
-     * @param avatar
-     * @param password
+     * @param phone
+     * @param smsCode
      * @return
      */
-    UserDTO register(String userName, String avatar, String password);
+    UserDTO register(String phone, String smsCode);
 }

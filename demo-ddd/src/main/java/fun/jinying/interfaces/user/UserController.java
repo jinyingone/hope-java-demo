@@ -19,7 +19,7 @@ public class UserController {
 
     @RequestMapping("/register")
     public UserDTO register(UserRegisterCmd cmd) {
-        UserDTO register = userServiceFacade.register(cmd.getUserName(), cmd.getAvatar(), cmd.getPassword());
+        UserDTO register = userServiceFacade.register(cmd.getPhone(), cmd.getSmsCode());
         return register;
     }
 }

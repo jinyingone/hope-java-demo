@@ -9,10 +9,24 @@ import fun.jinying.domain.user.model.User;
  **/
 public interface UserRepository {
     /**
+     * 下一个userId
+     *
+     * @return
+     */
+    Integer nextUserId();
+
+    /**
+     * 默认昵称序列
+     *
+     * @return
+     */
+    Integer nextUserNameSequence();
+
+    /**
      * 保存用户
      *
      * @param user
      * @return
      */
-    User saveUser(User user);
+    int saveUser(User user);
 }

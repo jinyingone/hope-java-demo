@@ -11,7 +11,8 @@ import java.io.Serializable;
  **/
 @Data
 public class UserDTO implements Serializable {
-    String userId;
-    String userName;
-    String avatar;
+    private String userId;
+    private String userName;
+    private String avatar;
+    private String phone;
 }
