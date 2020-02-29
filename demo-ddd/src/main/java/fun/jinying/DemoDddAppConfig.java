@@ -1,8 +1,10 @@
 package fun.jinying;
 
+import fun.jinying.application.SmsService;
 import fun.jinying.domain.user.factory.UserFactory;
 import fun.jinying.domain.user.model.UserConfig;
 import fun.jinying.domain.user.repository.UserRepository;
+import fun.jinying.infrastructure.OuterSmsService;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,5 +26,10 @@ public class DemoDddAppConfig {
     @Bean
     public UserFactory userFactory(UserRepository userRepository, UserConfig userConfig) {
         return new UserFactory(userRepository, userConfig);
+    }
+
+    @Bean
+    public SmsService smsService() {
+        return new OuterSmsService();
     }
 }

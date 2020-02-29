@@ -27,9 +27,6 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public User register(String phone) {
-        userRepository.getByPhone(phone).ifPresent(u -> {
-            throw new RuntimeException("");
-        });
         User user = userFactory.newUser(phone);
         userRepository.saveUser(user);
         return user;

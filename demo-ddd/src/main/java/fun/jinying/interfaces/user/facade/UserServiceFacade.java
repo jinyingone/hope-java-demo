@@ -15,5 +15,5 @@ public interface UserServiceFacade {
      * @param smsCode
      * @return
      */
-    UserDTO register(String phone, String smsCode);
+    UserDTO register(String phone, int smsCode);
 }

@@ -14,7 +14,7 @@ public interface UserService {
     /**
      * 注册
      *
-     * @param phone
+     * @param phone   手机号
      * @return
      */
     User register(String phone);

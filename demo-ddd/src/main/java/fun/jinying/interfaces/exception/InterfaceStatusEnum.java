@@ -1,6 +1,5 @@
 package fun.jinying.interfaces.exception;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
@@ -18,10 +17,15 @@ public enum InterfaceStatusEnum {
      * 默认异常
      */
     SYSTEM_ERROR(500, "服务器内部错误,请稍后重试"),
+    SYSTEM_ERROR_PARAMETER(501, "参数错误"),
+
     /**
-     * 注册失败
+     * 用户相关错误
      */
-    USER_REGISTER_FAIL(301, "注册失败,手机号已存在");
+    USER_REGISTER_FAIL_EXISTS(301, "注册失败,手机号已存在"),
+
+    USER_REGISTER_FAIL_CODE(302, "注册失败,验证码错误");
+
 
     private int value;
     private String message;
