@@ -4,6 +4,8 @@ import fun.jinying.domain.user.model.User;
 import fun.jinying.domain.user.model.UserConfig;
 import fun.jinying.domain.user.repository.UserRepository;
 
+import java.util.Date;
+
 /**
  * @description: 用户工厂
  * @author: sjy
@@ -29,12 +31,15 @@ public class UserFactory {
     }
 
     public User newUser(String phone) {
-        Integer nextUserId = userRepository.nextUserId();
         User user = new User();
-        user.setUserId(nextUserId);
         user.setPhone(phone);
-        user.setDefaultUserName(userRepository.nextUserNameSequence().toString());
+        Date date = new Date();
+        user.setCreateTime(date);
+        user.setUpdateTime(date);
+        user.setUserId(userRepository.nextUserId());
         user.setAvatar(userConfig.getDefaultAvatar());
+        user.setDefaultUserName(userRepository.nextUserNameSequence().toString());
+        user.setInitializePassword();
         return user;
     }
 }

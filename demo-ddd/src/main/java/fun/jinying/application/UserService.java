@@ -2,6 +2,8 @@ package fun.jinying.application;
 
 import fun.jinying.domain.user.model.User;
 
+import java.util.Optional;
+
 /**
  * @description: 用户服务
  * @author: sjy
@@ -16,4 +18,12 @@ public interface UserService {
      * @return
      */
     User register(String phone);
+
+    /**
+     * 已注册用户信息
+     *
+     * @param phone
+     * @return
+     */
+    Optional<User> getRegisteredUser(String phone);
 }

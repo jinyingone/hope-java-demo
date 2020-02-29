@@ -7,6 +7,8 @@ import fun.jinying.domain.user.repository.UserRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 /**
  * @description:
  * @author: sjy
@@ -25,8 +27,16 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public User register(String phone) {
+        userRepository.getByPhone(phone).ifPresent(u -> {
+            throw new RuntimeException("");
+        });
         User user = userFactory.newUser(phone);
         userRepository.saveUser(user);
         return user;
+    }
+
+    @Override
+    public Optional<User> getRegisteredUser(String phone) {
+        return userRepository.getByPhone(phone);
     }
 }

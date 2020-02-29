@@ -5,9 +5,12 @@ import fun.jinying.domain.user.repository.UserRepository;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.swing.text.html.Option;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -37,6 +40,11 @@ public class MyUserRepository implements UserRepository {
         return userMapper.saveUser(user);
     }
 
+    @Override
+    public Optional<User> getByPhone(String phone) {
+        return Optional.ofNullable(userMapper.getByPhone(phone));
+    }
+
     @Mapper
     @Component
     public interface UserMapper {
@@ -46,9 +54,18 @@ public class MyUserRepository implements UserRepository {
          * @param user
          * @return
          */
-        @Insert("insert into user(user_id,phone,user_name,avatar,create_time,update_time)" +
-                "values(#{user.userId},#{user.phone},#{user.userName},#{user.avatar},#{user.createTime},#{user.updateTime})")
+        @Insert("insert into user(user_id,phone,user_name,avatar,password,create_time,update_time)" +
+                "values(#{user.userId},#{user.phone},#{user.userName},#{user.avatar},#{user.password},#{user.createTime},#{user.updateTime})")
         int saveUser(@Param("user") User user);
+
+        /**
+         * 根据手机号查找
+         *
+         * @param phone 手机号
+         * @return
+         */
+        @Select("select user_id,user_name,avatar,create_time,update_time from user where phone=#{phone}")
+        User getByPhone(@Param("phone") String phone);
     }
 
 }

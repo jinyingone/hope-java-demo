@@ -4,6 +4,7 @@ import fun.jinying.domain.shard.model.Entity;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * @description: 用户
@@ -41,9 +42,19 @@ public class User implements Entity {
         return user;
     }
 
+    /**
+     * 设置默认名字
+     *
+     * @param uniqueNameFlag
+     */
     public void setDefaultUserName(String uniqueNameFlag) {
         this.userName = "mm_" + uniqueNameFlag;
     }
 
-
+    /**
+     * 设置初始化密码
+     */
+    public void setInitializePassword() {
+        this.password = UUID.randomUUID().toString();
+    }
 }

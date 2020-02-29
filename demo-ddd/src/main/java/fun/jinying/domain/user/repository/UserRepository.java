@@ -2,6 +2,8 @@ package fun.jinying.domain.user.repository;
 
 import fun.jinying.domain.user.model.User;
 
+import java.util.Optional;
+
 /**
  * @description: 用户仓储
  * @author: sjy
@@ -29,4 +31,12 @@ public interface UserRepository {
      * @return
      */
     int saveUser(User user);
+
+    /**
+     * 根据手机号查找
+     *
+     * @param phone
+     * @return
+     */
+    Optional<User> getByPhone(String phone);
 }
