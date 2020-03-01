@@ -1,8 +1,10 @@
 package fun.jinying.application.impl;
 
 import fun.jinying.application.UserService;
+import fun.jinying.domain.service.EventProducer;
 import fun.jinying.domain.user.factory.UserFactory;
 import fun.jinying.domain.user.model.User;
+import fun.jinying.domain.user.model.UserEvent;
 import fun.jinying.domain.user.repository.UserRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,10 +20,12 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
     private UserFactory userFactory;
     private UserRepository userRepository;
+    private EventProducer<UserEvent> userEventProducer;
 
-    public UserServiceImpl(UserFactory userFactory, UserRepository userRepository) {
+    public UserServiceImpl(UserFactory userFactory, UserRepository userRepository, EventProducer<UserEvent> userEventProducer) {
         this.userFactory = userFactory;
         this.userRepository = userRepository;
+        this.userEventProducer = userEventProducer;
     }
 
     @Override
@@ -29,6 +33,7 @@ public class UserServiceImpl implements UserService {
     public User register(String phone) {
         User user = userFactory.newUser(phone);
         userRepository.saveUser(user);
+        userEventProducer.sendEvent(userFactory.userRegisteredEvent(user));
         return user;
     }
 
@@ -39,6 +44,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void login(User user) {
-        // TODO: 20-2-29发送事件
+        userEventProducer.sendEvent(userFactory.userLoggedEvent(user));
     }
 }

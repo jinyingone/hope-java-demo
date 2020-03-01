@@ -5,6 +5,11 @@ import fun.jinying.domain.user.factory.UserFactory;
 import fun.jinying.domain.user.model.UserConfig;
 import fun.jinying.domain.user.repository.UserRepository;
 import fun.jinying.infrastructure.OuterSmsService;
+import fun.jinying.infrastructure.message.UserEventProducer;
+import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,4 +37,18 @@ public class DemoDddAppConfig {
     public SmsService smsService() {
         return new OuterSmsService();
     }
+
+    @Bean
+    public TopicExchange userExchange() {
+        TopicExchange topicExchange = new TopicExchange(UserEventProducer.USER_EXCHANGE);
+        return topicExchange;
+    }
+
+    @Bean
+    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
+        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+        rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
+        return rabbitTemplate;
+    }
+
 }

@@ -1,7 +1,6 @@
 package fun.jinying.domain.user.factory;
 
-import fun.jinying.domain.user.model.User;
-import fun.jinying.domain.user.model.UserConfig;
+import fun.jinying.domain.user.model.*;
 import fun.jinying.domain.user.repository.UserRepository;
 
 import java.util.Date;
@@ -41,5 +40,19 @@ public class UserFactory {
         user.setDefaultUserName(userRepository.nextUserNameSequence().toString());
         user.setInitializePassword();
         return user;
+    }
+
+    public UserRegisteredEvent userRegisteredEvent(User user) {
+        UserRegisteredEvent userRegisteredEvent = new UserRegisteredEvent();
+        userRegisteredEvent.setUserId(user.getUserId().toString());
+        userRegisteredEvent.setType(UserEventTypeEnum.REGISGERED);
+        return userRegisteredEvent;
+    }
+
+    public UserEvent userLoggedEvent(User user) {
+        UserLoggedEvent event = new UserLoggedEvent();
+        event.setUserId(user.getUserId().toString());
+        event.setType(UserEventTypeEnum.LOGED);
+        return event;
     }
 }

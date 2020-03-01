@@ -27,4 +27,5 @@ public class UserController {
     public UserDTO login(@Validated UserLoginCmd cmd) {
         return userServiceFacade.login(cmd.getPhone(), cmd.getSmsCode());
     }
+
 }
