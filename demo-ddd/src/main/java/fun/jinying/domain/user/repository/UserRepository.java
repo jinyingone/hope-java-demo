@@ -1,6 +1,7 @@
 package fun.jinying.domain.user.repository;
 
 import fun.jinying.domain.user.model.User;
+import fun.jinying.domain.user.model.UserUpdater;
 
 import java.util.Optional;
 
@@ -39,4 +40,21 @@ public interface UserRepository {
      * @return
      */
     Optional<User> getByPhone(String phone);
+
+    /**
+     * 根据id查找
+     *
+     * @param userId
+     * @return
+     */
+    Optional<User> getByUserId(String userId);
+
+    /**
+     * 更新用户
+     *
+     * @param userId
+     * @param userUpdater
+     * @return
+     */
+    int update(Integer userId, UserUpdater userUpdater);
 }

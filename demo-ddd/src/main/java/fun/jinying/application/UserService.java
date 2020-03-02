@@ -1,6 +1,7 @@
 package fun.jinying.application;
 
 import fun.jinying.domain.user.model.User;
+import fun.jinying.domain.user.model.UserUpdater;
 
 import java.util.Optional;
 
@@ -33,4 +34,21 @@ public interface UserService {
      * @param user
      */
     void login(User user);
+
+    /**
+     * 查询用户
+     *
+     * @param userId
+     * @return
+     */
+    Optional<User> getUser(String userId);
+
+    /**
+     * 更新用户
+     *
+     * @param user
+     * @param userUpdater
+     * @return
+     */
+    User update(User user, UserUpdater userUpdater);
 }

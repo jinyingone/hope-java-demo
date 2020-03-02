@@ -28,4 +28,14 @@ public class UserController {
         return userServiceFacade.login(cmd.getPhone(), cmd.getSmsCode());
     }
 
+    @RequestMapping("/update")
+    public UserDTO update(@Validated UserUpdateCmd cmd) {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUserId(cmd.getUserId());
+        userDTO.setAvatar(cmd.getAvatar());
+        userDTO.setUserName(cmd.getUserName());
+        userDTO.setPhone(cmd.getPhone());
+        return userServiceFacade.update(userDTO);
+    }
+
 }

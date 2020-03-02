@@ -1,6 +1,7 @@
 package fun.jinying.infrastructure.persistance;
 
 import fun.jinying.domain.user.model.User;
+import fun.jinying.domain.user.model.UserUpdater;
 import fun.jinying.domain.user.repository.UserRepository;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -44,6 +45,16 @@ public class MyUserRepository implements UserRepository {
         return Optional.ofNullable(userMapper.getByPhone(phone));
     }
 
+    @Override
+    public Optional<User> getByUserId(String userId) {
+        return Optional.ofNullable(userMapper.getByUserId(userId));
+    }
+
+    @Override
+    public int update(Integer userId, UserUpdater userUpdater) {
+        return userMapper.updateUser(userId, userUpdater);
+    }
+
     @Mapper
     @Component
     public interface UserMapper {
@@ -65,6 +76,18 @@ public class MyUserRepository implements UserRepository {
          */
         @Select("select user_id,user_name,avatar,phone,create_time,update_time from user where phone=#{phone}")
         User getByPhone(@Param("phone") String phone);
+
+        /**
+         * 根据userId查找
+         *
+         * @param userId
+         * @return
+         */
+        @Select("select user_id,user_name,avatar,phone,create_time,update_time from user where user_id=#{userId}")
+        User getByUserId(@Param("userId") String userId);
+
+
+        int updateUser(@Param("userId") Integer userId, @Param("userUpdater") UserUpdater userUpdater);
     }
 
 }

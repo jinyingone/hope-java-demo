@@ -5,6 +5,7 @@ import fun.jinying.domain.service.EventProducer;
 import fun.jinying.domain.user.factory.UserFactory;
 import fun.jinying.domain.user.model.User;
 import fun.jinying.domain.user.model.UserEvent;
+import fun.jinying.domain.user.model.UserUpdater;
 import fun.jinying.domain.user.repository.UserRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,5 +46,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public void login(User user) {
         userEventProducer.sendEvent(userFactory.userLoggedEvent(user));
+    }
+
+    @Override
+    public Optional<User> getUser(String userId) {
+        return userRepository.getByUserId(userId);
+    }
+
+    @Override
+    public User update(User user, UserUpdater userUpdater) {
+        userRepository.update(user.getUserId(), userUpdater);
+        userEventProducer.sendEvent(userFactory.userUpdatedEvent(user, userUpdater));
+        return user;
     }
 }

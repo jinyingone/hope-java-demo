@@ -14,8 +14,14 @@ public enum UserEventTypeEnum implements Vo {
      * 注册成功
      */
     REGISGERED(1),
-    LOGED(2);
-    ;
+    /**
+     * 登录
+     */
+    LOGED(2),
+    /**
+     * 更新
+     */
+    UPDATED(3);
     private int value;
 
     UserEventTypeEnum(int value) {

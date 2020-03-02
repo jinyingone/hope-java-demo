@@ -3,6 +3,7 @@ package fun.jinying.interfaces.user.facade.internal;
 import fun.jinying.application.SmsService;
 import fun.jinying.application.UserService;
 import fun.jinying.domain.user.model.User;
+import fun.jinying.domain.user.model.UserUpdater;
 import fun.jinying.interfaces.exception.InterfaceException;
 import fun.jinying.interfaces.exception.InterfaceStatusEnum;
 import fun.jinying.interfaces.user.facade.UserServiceFacade;
@@ -46,5 +47,12 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
         User user = userService.getRegisteredUser(phone).orElseThrow(() -> new InterfaceException(InterfaceStatusEnum.USER_LOGIN_FAIL_NOT_EXISTS));
         userService.login(user);
         return new UserDTOAssembler().toDTO(user);
+    }
+
+    @Override
+    public UserDTO update(UserDTO userDTO) {
+        User user = userService.getUser(userDTO.getUserId()).orElseThrow(() -> new InterfaceException(InterfaceStatusEnum.USER_FAIL_NOT_EXISTS));
+        User updatedUser = userService.update(user, new UserUpdater(userDTO.getUserName(), userDTO.getAvatar(), userDTO.getPhone()));
+        return new UserDTOAssembler().toDTO(updatedUser);
     }
 }

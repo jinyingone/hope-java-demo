@@ -25,4 +25,12 @@ public interface UserServiceFacade {
      * @return
      */
     UserDTO login(String phone, int smsCode);
+
+    /**
+     * 更新
+     *
+     * @param userDTO
+     * @return
+     */
+    UserDTO update(UserDTO userDTO);
 }

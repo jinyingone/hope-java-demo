@@ -55,4 +55,13 @@ public class UserFactory {
         event.setType(UserEventTypeEnum.LOGED);
         return event;
     }
+
+    public UserEvent userUpdatedEvent(User oldUser, UserUpdater userUpdater) {
+        UserLoggedEvent event = new UserLoggedEvent();
+        event.setUserId(oldUser.getUserId().toString());
+        event.setUpdater(userUpdater);
+        event.setOldUser(oldUser);
+        event.setType(UserEventTypeEnum.UPDATED);
+        return event;
+    }
 }

@@ -1,0 +1,1 @@
+insert into user (user_id,phone,user_name,avatar,password,create_time,update_time)values(1,18999999999,'admin','https://profile.csdnimg.cn/6/7/C/1_leslies2','admin',now(),now());

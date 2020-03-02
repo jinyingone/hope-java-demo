@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="fun.jinying.infrastructure.persistance.MyUserRepository$UserMapper">
+    <update id="updateUser">
+        update user
+        <set>
+            <if test="userUpdater.userName != null">
+                user_name=#{userUpdater.userName},
+            </if>
+            <if test="userUpdater.avatar != null">
+                avatar=#{userUpdater.avatar},
+            </if>
+            <if test="userUpdater.phone != null">
+                phone=#{userUpdater.phone}
+            </if>
+        </set>
+        where user_id=#{userId}
+    </update>
+</mapper>
