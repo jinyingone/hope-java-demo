@@ -3,7 +3,6 @@ package fun.jinying.infrastructure.message;
 import fun.jinying.domain.service.EventProducer;
 import fun.jinying.domain.user.model.UserEvent;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,8 +13,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserEventProducer implements EventProducer<UserEvent> {
     private RabbitTemplate rabbitTemplate;
-    public static final String USER_ROUTING_KEY = "user.";
-    public static final String USER_EXCHANGE = "user";
+    public static final String ROUTING_KEY = "user";
+    public static final String EXCHANGE = System.getProperty("spring.application.name") + "user";
 
     public UserEventProducer(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
@@ -23,7 +22,6 @@ public class UserEventProducer implements EventProducer<UserEvent> {
 
     @Override
     public void sendEvent(UserEvent event) {
-        rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
-        rabbitTemplate.convertAndSend(USER_EXCHANGE, USER_ROUTING_KEY + event.getType(), event);
+        rabbitTemplate.convertAndSend(EXCHANGE, ROUTING_KEY + event.getType(), event);
     }
 }

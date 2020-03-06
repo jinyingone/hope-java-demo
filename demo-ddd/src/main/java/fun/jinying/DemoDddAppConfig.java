@@ -1,10 +1,13 @@
 package fun.jinying;
 
 import fun.jinying.application.SmsService;
+import fun.jinying.domain.feed.factory.FeedFactory;
+import fun.jinying.domain.feed.repository.FeedRepository;
 import fun.jinying.domain.user.factory.UserFactory;
 import fun.jinying.domain.user.model.UserConfig;
 import fun.jinying.domain.user.repository.UserRepository;
 import fun.jinying.infrastructure.OuterSmsService;
+import fun.jinying.infrastructure.message.FeedEventProducer;
 import fun.jinying.infrastructure.message.UserEventProducer;
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -40,7 +43,7 @@ public class DemoDddAppConfig {
 
     @Bean
     public TopicExchange userExchange() {
-        TopicExchange topicExchange = new TopicExchange(UserEventProducer.USER_EXCHANGE);
+        TopicExchange topicExchange = new TopicExchange(UserEventProducer.EXCHANGE);
         return topicExchange;
     }
 
@@ -49,6 +52,17 @@ public class DemoDddAppConfig {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
         return rabbitTemplate;
+    }
+
+    @Bean
+    public FeedFactory feedFactory(FeedRepository feedRepository) {
+        return new FeedFactory(feedRepository);
+    }
+
+    @Bean
+    public TopicExchange feedExchange(FeedEventProducer feedEventProducer) {
+        TopicExchange topicExchange = new TopicExchange(feedEventProducer.getExchange());
+        return topicExchange;
     }
 
 }
