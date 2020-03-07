@@ -28,7 +28,10 @@ public enum InterfaceStatusEnum {
     USER_LOGIN_FAIL_NOT_EXISTS(304, "登录失败,手机号不存在"),
     USER_FAIL_NOT_EXISTS(305, "用户不存在"),
 
-    ;
+    /**
+     * feed相关错误
+     */
+    FEED_NOT_EXITS(310, "操作失败");
 
 
     private int value;

@@ -18,13 +18,19 @@ public class FeedFactory {
     }
 
     public Feed newFeed(Integer userId, String text) {
+        return newFeed(userId, text, FeedActionTypeEnum.ORIGIN);
+    }
+
+    public Feed newFeed(Integer userId, String text, FeedActionTypeEnum type) {
         Feed feed = new Feed();
         feed.setFeedId(feedRepository.nextFeedId());
+        feed.setSourceFeedId(feed.getFeedId());
         Date date = new Date();
         feed.setTime(date);
         feed.setText(text);
         feed.setUserId(userId);
-        feed.setType(FeedTypeEnum.text);
+        feed.setActionType(type);
+        feed.setContentType(FeedContentTypeEnum.TEXT);
         feed.setStatus(FeedStatusEnum.NORMAL);
         feed.setCreateTime(date);
         feed.setUpdateTime(date);

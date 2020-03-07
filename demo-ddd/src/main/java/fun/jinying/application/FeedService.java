@@ -3,6 +3,7 @@ package fun.jinying.application;
 import fun.jinying.domain.feed.model.Feed;
 import fun.jinying.domain.feed.model.FeedEvent;
 import fun.jinying.interfaces.feed.PublishCmd;
+import fun.jinying.interfaces.feed.RepostCmd;
 
 /**
  * @description: feed
@@ -24,4 +25,13 @@ public interface FeedService {
      * @param feedEvent
      */
     Feed publish(FeedEvent feedEvent);
+
+    /**
+     * 转发
+     *
+     * @param repostCmd
+     * @return
+     */
+    Feed repost(RepostCmd repostCmd);
+
 }

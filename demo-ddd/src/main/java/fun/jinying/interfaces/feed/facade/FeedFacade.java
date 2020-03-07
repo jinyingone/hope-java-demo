@@ -1,6 +1,7 @@
 package fun.jinying.interfaces.feed.facade;
 
 import fun.jinying.interfaces.feed.PublishCmd;
+import fun.jinying.interfaces.feed.RepostCmd;
 import fun.jinying.interfaces.feed.facade.dto.FeedDTO;
 
 /**
@@ -16,4 +17,12 @@ public interface FeedFacade {
      * @return
      */
     FeedDTO publish(PublishCmd publishCmd);
+
+    /**
+     * 转发
+     *
+     * @param repostCmd
+     * @return
+     */
+    FeedDTO repost(RepostCmd repostCmd);
 }

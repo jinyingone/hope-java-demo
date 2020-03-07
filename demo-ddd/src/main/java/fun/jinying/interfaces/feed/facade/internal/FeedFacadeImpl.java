@@ -3,6 +3,7 @@ package fun.jinying.interfaces.feed.facade.internal;
 import fun.jinying.application.FeedService;
 import fun.jinying.domain.feed.model.Feed;
 import fun.jinying.interfaces.feed.PublishCmd;
+import fun.jinying.interfaces.feed.RepostCmd;
 import fun.jinying.interfaces.feed.facade.FeedFacade;
 import fun.jinying.interfaces.feed.facade.dto.FeedDTO;
 import fun.jinying.interfaces.feed.facade.internal.assembler.FeedDtoAssembler;
@@ -24,6 +25,12 @@ public class FeedFacadeImpl implements FeedFacade {
     @Override
     public FeedDTO publish(PublishCmd publishCmd) {
         Feed feed = feedService.publish(publishCmd);
+        return new FeedDtoAssembler().toDTO(feed);
+    }
+
+    @Override
+    public FeedDTO repost(RepostCmd repostCmd) {
+        Feed feed = feedService.repost(repostCmd);
         return new FeedDtoAssembler().toDTO(feed);
     }
 }

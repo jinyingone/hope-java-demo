@@ -17,13 +17,30 @@ DROP TABLE IF EXISTS feed;
 CREATE table feed(
 id int IDENTITY PRIMARY KEY,
 feed_id bigint not null,
+source_feed_id bigint not null,
 user_id int not null,
 text varchar(128),
-type tinyint not null,
+action_type tinyint not null,
+content_type tinyint not null,
 status tinyint not null,
 time datetime not null,
 create_time datetime not null,
 update_time datetime not null
 );
 create unique index uk_feedId on feed(feed_id);
+
+DROP TABLE IF EXISTS repost_feed;
+CREATE table repost_feed(
+id int IDENTITY PRIMARY KEY,
+feed_id bigint not null,
+reposted_feed_id bigint not null,
+source_feed_id bigint not null,
+feed_link varchar(512),
+user_id int not null,
+status tinyint not null,
+time datetime not null,
+create_time datetime not null,
+update_time datetime not null
+);
+create unique index uk_rf_feedId on repost_feed(feed_id);
 

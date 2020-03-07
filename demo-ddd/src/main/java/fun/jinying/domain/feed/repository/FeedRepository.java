@@ -1,6 +1,9 @@
 package fun.jinying.domain.feed.repository;
 
+import fun.jinying.domain.feed.RepostFeed;
 import fun.jinying.domain.feed.model.Feed;
+
+import java.util.Optional;
 
 /**
  * @description: feed存储
@@ -30,4 +33,14 @@ public interface FeedRepository {
      * @return
      */
     Long nextFeedId();
+
+    /**
+     * 保存转发feed
+     *
+     * @param repostFeed
+     * @return
+     */
+    int saveRepostFeed(RepostFeed repostFeed);
+
+    Optional<Feed> getFeed(Long feedId);
 }
