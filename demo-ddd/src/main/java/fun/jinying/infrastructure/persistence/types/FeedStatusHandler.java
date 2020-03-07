@@ -2,7 +2,6 @@ package fun.jinying.infrastructure.persistence.types;
 
 import fun.jinying.domain.feed.model.FeedStatusEnum;
 import fun.jinying.domain.shard.model.ValueEnum;
-import org.apache.ibatis.type.MappedTypes;
 
 /**
  * @description:

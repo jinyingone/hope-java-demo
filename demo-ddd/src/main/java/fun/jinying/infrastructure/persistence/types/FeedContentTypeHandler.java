@@ -1,6 +1,5 @@
 package fun.jinying.infrastructure.persistence.types;
 
-import fun.jinying.domain.feed.model.FeedActionTypeEnum;
 import fun.jinying.domain.feed.model.FeedContentTypeEnum;
 import fun.jinying.domain.shard.model.ValueEnum;
 

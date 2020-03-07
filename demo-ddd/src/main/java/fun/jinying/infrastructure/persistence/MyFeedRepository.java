@@ -3,7 +3,6 @@ package fun.jinying.infrastructure.persistence;
 import fun.jinying.domain.feed.RepostFeed;
 import fun.jinying.domain.feed.model.Feed;
 import fun.jinying.domain.feed.model.FeedActionTypeEnum;
-import fun.jinying.domain.feed.model.FeedStatusEnum;
 import fun.jinying.domain.feed.repository.FeedRepository;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;

@@ -3,11 +3,8 @@ package fun.jinying.domain.feed;
 import fun.jinying.domain.feed.model.FeedStatusEnum;
 import lombok.Data;
 
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.StringJoiner;
-import java.util.stream.Collectors;
 
 /**
  * @description: 转发feed

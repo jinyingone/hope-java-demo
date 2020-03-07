@@ -1,6 +1,5 @@
 package fun.jinying.interfaces.feed;
 
-import com.sun.imageio.plugins.common.I18N;
 import fun.jinying.interfaces.feed.facade.FeedFacade;
 import fun.jinying.interfaces.feed.facade.dto.FeedDTO;
 import org.springframework.beans.factory.annotation.Autowired;
