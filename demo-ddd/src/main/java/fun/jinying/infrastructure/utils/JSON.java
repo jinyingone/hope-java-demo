@@ -24,4 +24,20 @@ public class JSON {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * 转为类
+     *
+     * @param json
+     * @param valueType
+     * @param <T>
+     * @return
+     */
+    public static <T> T fromJson(String json, Class<T> valueType) {
+        try {
+            return objectMapper.readValue(json, valueType);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

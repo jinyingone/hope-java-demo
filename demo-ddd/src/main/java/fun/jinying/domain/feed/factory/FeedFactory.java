@@ -20,10 +20,14 @@ public class FeedFactory {
     public Feed newFeed(Integer userId, String text) {
         Feed feed = new Feed();
         feed.setFeedId(feedRepository.nextFeedId());
-        feed.setTime(new Date());
+        Date date = new Date();
+        feed.setTime(date);
         feed.setText(text);
         feed.setUserId(userId);
         feed.setType(FeedTypeEnum.text);
+        feed.setStatus(FeedStatusEnum.NORMAL);
+        feed.setCreateTime(date);
+        feed.setUpdateTime(date);
         return feed;
     }
 

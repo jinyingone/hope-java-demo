@@ -19,6 +19,9 @@ id int IDENTITY PRIMARY KEY,
 feed_id bigint not null,
 user_id int not null,
 text varchar(128),
+type tinyint not null,
+status tinyint not null,
+time datetime not null,
 create_time datetime not null,
 update_time datetime not null
 );

@@ -1,7 +1,10 @@
-package fun.jinying.infrastructure.persistance;
+package fun.jinying.infrastructure.persistence;
 
 import fun.jinying.domain.feed.model.Feed;
 import fun.jinying.domain.feed.repository.FeedRepository;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.atomic.AtomicLong;
@@ -14,10 +17,12 @@ import java.util.concurrent.atomic.AtomicLong;
 @Component
 public class MyFeedRepository implements FeedRepository {
     AtomicLong feedIdGen = new AtomicLong(1000);
+    @Autowired
+    private FeedMapper feedMapper;
 
     @Override
     public int saveFeed(Feed feed) {
-        return 0;
+        return feedMapper.saveFeed(feed);
     }
 
     @Override
@@ -28,5 +33,13 @@ public class MyFeedRepository implements FeedRepository {
     @Override
     public Long nextFeedId() {
         return feedIdGen.incrementAndGet();
+    }
+
+    @Mapper
+    @Component
+    public interface FeedMapper {
+        @Insert("insert into feed(feed_id,user_id,text,type,status,time,create_time,update_time)" +
+                "values(#{feedId},#{userId},#{text},#{type},#{status},#{time},#{createTime},#{updateTime})")
+        int saveFeed(Feed feed);
     }
 }

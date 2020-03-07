@@ -1,6 +1,7 @@
 package fun.jinying.application;
 
 import fun.jinying.domain.feed.model.Feed;
+import fun.jinying.domain.feed.model.FeedEvent;
 import fun.jinying.interfaces.feed.PublishCmd;
 
 /**
@@ -16,4 +17,11 @@ public interface FeedService {
      * @return
      */
     Feed publish(PublishCmd feed);
+
+    /**
+     * 根据事件发布
+     *
+     * @param feedEvent
+     */
+    Feed publish(FeedEvent feedEvent);
 }

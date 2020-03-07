@@ -1,4 +1,4 @@
-package fun.jinying.infrastructure.persistance;
+package fun.jinying.infrastructure.persistence;
 
 import fun.jinying.domain.user.model.User;
 import fun.jinying.domain.user.model.UserUpdater;

@@ -16,7 +16,10 @@ public class Feed implements Entity {
     private Integer userId;
     private String text;
     private FeedTypeEnum type;
-    private Date Time;
+    private FeedStatusEnum status;
+    private Date time;
+    private Date createTime;
+    private Date updateTime;
 
     public void repost() {
     }

@@ -1,12 +1,20 @@
 package fun.jinying.infrastructure.message;
 
+import fun.jinying.application.FeedService;
+import fun.jinying.domain.feed.model.Feed;
+import fun.jinying.domain.feed.model.FeedEvent;
+import fun.jinying.infrastructure.utils.JSON;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.ExchangeTypes;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.nio.charset.StandardCharsets;
 
 /**
  * @description: feed消费
@@ -14,14 +22,21 @@ import org.springframework.stereotype.Component;
  * @create: 2020-03-06 23:47
  **/
 @Component
+@Slf4j
 public class FeedEventConsumer {
+    @Autowired
+    private FeedService feedService;
+
     @RabbitListener(bindings = {
             @QueueBinding(exchange = @Exchange(value = "demo-ddd.feed", type = ExchangeTypes.TOPIC),
                     key = "feed.#",
                     value = @Queue(name = "${spring.application.name}.feed", durable = "true"))
     })
     public void onMessage(Message message) {
-        String str = new String(message.getBody());
-        System.out.println(str);
+        String body = new String(message.getBody(), StandardCharsets.UTF_8);
+        log.info("consuming,body={},properties={}", body, message.getMessageProperties());
+        FeedEvent feedEvent = JSON.fromJson(body, FeedEvent.class);
+
+        Feed feed = feedService.publish(feedEvent);
     }
 }
