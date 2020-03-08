@@ -1,7 +1,7 @@
 package fun.jinying.application.impl;
 
 import fun.jinying.application.UserService;
-import fun.jinying.domain.service.EventProducer;
+import fun.jinying.domain.shard.model.EventProducer;
 import fun.jinying.domain.user.factory.UserFactory;
 import fun.jinying.domain.user.model.User;
 import fun.jinying.domain.user.model.UserEvent;

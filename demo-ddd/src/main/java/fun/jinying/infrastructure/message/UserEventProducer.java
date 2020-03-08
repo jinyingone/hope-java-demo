@@ -1,6 +1,6 @@
 package fun.jinying.infrastructure.message;
 
-import fun.jinying.domain.service.EventProducer;
+import fun.jinying.domain.shard.model.EventProducer;
 import fun.jinying.domain.user.model.UserEvent;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;

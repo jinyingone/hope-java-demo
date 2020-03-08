@@ -37,5 +37,4 @@ public class UserController {
         userDTO.setPhone(cmd.getPhone());
         return userServiceFacade.update(userDTO);
     }
-
 }

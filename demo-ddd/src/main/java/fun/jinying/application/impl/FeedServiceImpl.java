@@ -7,7 +7,7 @@ import fun.jinying.domain.feed.model.Feed;
 import fun.jinying.domain.feed.model.FeedActionTypeEnum;
 import fun.jinying.domain.feed.model.FeedEvent;
 import fun.jinying.domain.feed.repository.FeedRepository;
-import fun.jinying.domain.service.EventProducer;
+import fun.jinying.domain.shard.model.EventProducer;
 import fun.jinying.interfaces.exception.InterfaceException;
 import fun.jinying.interfaces.exception.InterfaceStatusEnum;
 import fun.jinying.interfaces.feed.PublishCmd;

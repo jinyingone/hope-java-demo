@@ -1,7 +1,7 @@
 package fun.jinying.infrastructure.message;
 
 import fun.jinying.domain.feed.model.FeedEvent;
-import fun.jinying.domain.service.EventProducer;
+import fun.jinying.domain.shard.model.EventProducer;
 import lombok.Getter;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;

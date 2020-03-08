@@ -3,6 +3,7 @@ package fun.jinying;
 import fun.jinying.application.SmsService;
 import fun.jinying.domain.feed.factory.FeedFactory;
 import fun.jinying.domain.feed.repository.FeedRepository;
+import fun.jinying.domain.relation.factory.RelationFactory;
 import fun.jinying.domain.user.factory.UserFactory;
 import fun.jinying.domain.user.model.UserConfig;
 import fun.jinying.domain.user.repository.UserRepository;
@@ -63,6 +64,11 @@ public class DemoDddAppConfig {
     public TopicExchange feedExchange(FeedEventProducer feedEventProducer) {
         TopicExchange topicExchange = new TopicExchange(feedEventProducer.getExchange());
         return topicExchange;
+    }
+
+    @Bean
+    public RelationFactory relationFactory() {
+        return new RelationFactory();
     }
 
 }

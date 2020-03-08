@@ -13,6 +13,7 @@ create unique index uk_userId on user(user_id);
 create unique index uk_phone on user(phone);
 create unique index uk_userName on user(user_name);
 
+
 DROP TABLE IF EXISTS feed;
 CREATE table feed(
 id int IDENTITY PRIMARY KEY,
@@ -28,6 +29,8 @@ create_time datetime not null,
 update_time datetime not null
 );
 create unique index uk_feedId on feed(feed_id);
+comment on table feed is 'feed主表';
+
 
 DROP TABLE IF EXISTS repost_feed;
 CREATE table repost_feed(
@@ -43,4 +46,21 @@ create_time datetime not null,
 update_time datetime not null
 );
 create unique index uk_rf_feedId on repost_feed(feed_id);
+comment on table repost_feed is '转发类型feed';
+
+
+DROP TABLE IF EXISTS relation;
+CREATE table relation(
+id int IDENTITY PRIMARY KEY,
+fans_user_id int not null,
+follow_user_id int not null,
+fans_flag tinyint,
+follow_flag tinyint,
+follow_time datetime,
+fans_time datetime,
+create_time datetime not null,
+update_time datetime not null
+);
+create unique index uk_r_ff on relation(fans_user_id,follow_user_id);
+comment on table relation is '用户关系';
 

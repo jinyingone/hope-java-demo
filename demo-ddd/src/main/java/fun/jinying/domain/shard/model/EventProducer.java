@@ -1,6 +1,4 @@
-package fun.jinying.domain.service;
-
-import fun.jinying.domain.shard.model.Event;
+package fun.jinying.domain.shard.model;
 
 /**
  * @description: 事件服务
