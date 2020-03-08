@@ -6,6 +6,7 @@ import fun.jinying.domain.relation.model.Relation;
 import fun.jinying.domain.relation.repository.RelationRepository;
 import fun.jinying.interfaces.relation.FollowCmd;
 import fun.jinying.interfaces.relation.ListFansCmd;
+import fun.jinying.interfaces.relation.ListFollowCmd;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,11 +49,21 @@ public class RelationServiceImpl implements RelationService {
 
     @Override
     public List<Relation> listFans(ListFansCmd cmd) {
-        return relationRepository.listFans(cmd.getUserId(), new Date(cmd.getTime()));
+        return relationRepository.listFans(Integer.valueOf(cmd.getUserId()), new Date(cmd.getTime()));
     }
 
     @Override
     public int countFans(String userId) {
-        return relationRepository.countFans(userId);
+        return relationRepository.countFans(Integer.valueOf(userId));
+    }
+
+    @Override
+    public List<Relation> listFollow(ListFollowCmd cmd) {
+        return relationRepository.listFollow(Integer.valueOf(cmd.getUserId()), new Date(cmd.getTime()));
+    }
+
+    @Override
+    public int countFollow(String userId) {
+        return relationRepository.countFollow(Integer.valueOf(userId));
     }
 }

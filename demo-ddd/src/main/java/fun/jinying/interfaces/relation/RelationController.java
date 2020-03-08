@@ -34,4 +34,11 @@ public class RelationController {
         cmd.setLogUserId(logUserId);
         return relationFacade.listFans(cmd);
     }
+
+    @RequestMapping("/list_follow")
+    public PageAndListDTO listFans(@Validated @RequestBody ListFollowCmd cmd,
+                                   @RequestHeader(name = "log-user-id", required = false) String logUserId) {
+        cmd.setLogUserId(logUserId);
+        return relationFacade.listFollow(cmd);
+    }
 }

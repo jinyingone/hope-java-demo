@@ -33,13 +33,23 @@ public class MyRelationRepository implements RelationRepository {
     }
 
     @Override
-    public List<Relation> listFans(String userId, Date date) {
+    public List<Relation> listFans(Integer userId, Date date) {
         return relationMapper.selectFans(userId, RelationFlagEnum.FANS, date);
     }
 
     @Override
-    public int countFans(String userId) {
+    public int countFans(Integer userId) {
         return relationMapper.countFans(userId, RelationFlagEnum.FANS);
+    }
+
+    @Override
+    public List<Relation> listFollow(Integer userId, Date date) {
+        return relationMapper.selectFollow(userId, RelationFlagEnum.FOLLOW, date);
+    }
+
+    @Override
+    public int countFollow(Integer userId) {
+        return relationMapper.countFollow(userId,RelationFlagEnum.FOLLOW);
     }
 
     @Mapper
@@ -60,7 +70,7 @@ public class MyRelationRepository implements RelationRepository {
          * @return
          */
         @Select("select * from relation where user_id1=#{userId} and fans_flag=#{relation} and fans_time<#{date}order by fans_time desc")
-        List<Relation> selectFans(@Param("userId") String userId, @Param("relation") RelationFlagEnum relation, @Param("date") Date date);
+        List<Relation> selectFans(@Param("userId") Integer userId, @Param("relation") RelationFlagEnum relation, @Param("date") Date date);
 
         /**
          * 粉丝计数
@@ -69,6 +79,12 @@ public class MyRelationRepository implements RelationRepository {
          * @return
          */
         @Select("select count(*) from relation where user_id1=#{userId} and fans_flag=#{relation}")
-        int countFans(@Param("userId") String userId, @Param("relation") RelationFlagEnum relation);
+        int countFans(@Param("userId") Integer userId, @Param("relation") RelationFlagEnum relation);
+
+        @Select("select * from relation where user_id1=#{userId} and follow_flag=#{relation} and follow_time<#{date}order by follow_time desc")
+        List<Relation> selectFollow(@Param("userId") Integer userId, @Param("relation") RelationFlagEnum relation, @Param("date") Date date);
+
+        @Select("select count(*) from relation where user_id1=#{userId} and follow_flag=#{relation}")
+        int countFollow(@Param("userId") Integer userId, @Param("relation") RelationFlagEnum relation);
     }
 }

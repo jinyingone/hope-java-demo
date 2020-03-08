@@ -3,6 +3,7 @@ package fun.jinying.application;
 import fun.jinying.domain.relation.model.Relation;
 import fun.jinying.interfaces.relation.FollowCmd;
 import fun.jinying.interfaces.relation.ListFansCmd;
+import fun.jinying.interfaces.relation.ListFollowCmd;
 
 import java.util.List;
 
@@ -35,4 +36,20 @@ public interface RelationService {
      * @return
      */
     int countFans(String userId);
+
+    /**
+     * 关注列表
+     *
+     * @param cmd
+     * @return
+     */
+    List<Relation> listFollow(ListFollowCmd cmd);
+
+    /**
+     * 关注计数
+     *
+     * @param userId
+     * @return
+     */
+    int countFollow(String userId);
 }

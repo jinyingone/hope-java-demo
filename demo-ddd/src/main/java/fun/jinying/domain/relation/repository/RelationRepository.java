@@ -34,7 +34,7 @@ public interface RelationRepository {
      * @param date
      * @return
      */
-    List<Relation> listFans(String userId, Date date);
+    List<Relation> listFans(Integer userId, Date date);
 
     /**
      * 粉丝计数
@@ -42,5 +42,22 @@ public interface RelationRepository {
      * @param userId
      * @return
      */
-    int countFans(String userId);
+    int countFans(Integer userId);
+
+    /**
+     * 关注列表
+     *
+     * @param userId
+     * @param date
+     * @return
+     */
+    List<Relation> listFollow(Integer userId, Date date);
+
+    /**
+     * 关注计数
+     *
+     * @param userId
+     * @return
+     */
+    int countFollow(Integer userId);
 }

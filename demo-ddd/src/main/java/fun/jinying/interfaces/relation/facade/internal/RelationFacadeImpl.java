@@ -4,6 +4,7 @@ import fun.jinying.application.RelationService;
 import fun.jinying.domain.relation.model.Relation;
 import fun.jinying.interfaces.relation.FollowCmd;
 import fun.jinying.interfaces.relation.ListFansCmd;
+import fun.jinying.interfaces.relation.ListFollowCmd;
 import fun.jinying.interfaces.relation.facade.RelationFacade;
 import fun.jinying.interfaces.relation.facade.dto.PageAndListDTO;
 import fun.jinying.interfaces.relation.facade.dto.RelationDTO;
@@ -34,6 +35,16 @@ public class RelationFacadeImpl implements RelationFacade {
         cmd.setTime(cmd.getScore() == 0 ? System.currentTimeMillis() : -cmd.getScore());
         List<Relation> relationList = relationService.listFans(cmd);
         int totalCount = relationService.countFans(cmd.getUserId());
+        PageAndListDTO pageAndListDTO = new PageAndListDTO();
+        pageAndListDTO.init(relationList, totalCount);
+        return pageAndListDTO;
+    }
+
+    @Override
+    public PageAndListDTO listFollow(ListFollowCmd cmd) {
+        cmd.setTime(cmd.getScore() == 0 ? System.currentTimeMillis() : -cmd.getScore());
+        List<Relation> relationList = relationService.listFollow(cmd);
+        int totalCount = relationService.countFollow(cmd.getUserId());
         PageAndListDTO pageAndListDTO = new PageAndListDTO();
         pageAndListDTO.init(relationList, totalCount);
         return pageAndListDTO;
