@@ -2,6 +2,9 @@ package fun.jinying.domain.relation.repository;
 
 import fun.jinying.domain.relation.model.Relation;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * @description: 关系存储
  * @author: sjy
@@ -14,5 +17,30 @@ public interface RelationRepository {
      * @param relation
      * @return
      */
-    int saveRelation(Relation relation);
+    int saveFansRelation(Relation relation);
+
+    /**
+     * 保存关注关系
+     *
+     * @param followRelation
+     * @return
+     */
+    int saveFollowRelation(Relation followRelation);
+
+    /**
+     * 粉丝列表
+     *
+     * @param userId
+     * @param date
+     * @return
+     */
+    List<Relation> listFans(String userId, Date date);
+
+    /**
+     * 粉丝计数
+     *
+     * @param userId
+     * @return
+     */
+    int countFans(String userId);
 }

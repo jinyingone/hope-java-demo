@@ -52,8 +52,8 @@ comment on table repost_feed is '转发类型feed';
 DROP TABLE IF EXISTS relation;
 CREATE table relation(
 id int IDENTITY PRIMARY KEY,
-fans_user_id int not null,
-follow_user_id int not null,
+user_id1 int not null,
+user_id2 int not null,
 fans_flag tinyint,
 follow_flag tinyint,
 follow_time datetime,
@@ -61,6 +61,6 @@ fans_time datetime,
 create_time datetime not null,
 update_time datetime not null
 );
-create unique index uk_r_ff on relation(fans_user_id,follow_user_id);
+create unique index uk_r_ff on relation(user_id1,user_id2);
 comment on table relation is '用户关系';
 

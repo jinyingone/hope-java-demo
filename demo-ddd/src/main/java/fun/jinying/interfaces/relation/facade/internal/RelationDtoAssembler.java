@@ -10,10 +10,10 @@ import fun.jinying.interfaces.relation.facade.dto.RelationDTO;
  * @create: 2020-03-08 10:17
  **/
 public class RelationDtoAssembler {
-    public RelationDTO toDTO(Relation relation) {
+    public static RelationDTO toDTO(Relation relation) {
         RelationDTO dto = new RelationDTO();
-        dto.setFansUserId(relation.getFansUserId().toString());
-        dto.setFollowUserId(relation.getFollowUserId().toString());
+        dto.setFansUserId(relation.getUserId1().toString());
+        dto.setFollowUserId(relation.getUserId2().toString());
         dto.setFlag(relation.getRelationFlag(RelationFlagEnum.FANS));
         dto.setTime(relation.getFansTime());
         return dto;

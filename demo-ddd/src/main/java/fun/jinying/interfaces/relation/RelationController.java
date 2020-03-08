@@ -1,6 +1,7 @@
 package fun.jinying.interfaces.relation;
 
 import fun.jinying.interfaces.relation.facade.RelationFacade;
+import fun.jinying.interfaces.relation.facade.dto.PageAndListDTO;
 import fun.jinying.interfaces.relation.facade.dto.RelationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -25,5 +26,12 @@ public class RelationController {
                               @RequestHeader(name = "log-user-id") String logUserId) {
         followCmd.setFansUserId(logUserId);
         return relationFacade.follow(followCmd);
+    }
+
+    @RequestMapping("/list_fans")
+    public PageAndListDTO listFans(@Validated @RequestBody ListFansCmd cmd,
+                                   @RequestHeader(name = "log-user-id", required = false) String logUserId) {
+        cmd.setLogUserId(logUserId);
+        return relationFacade.listFans(cmd);
     }
 }

@@ -14,8 +14,8 @@ public class RelationFactory {
     public Relation newFansRelation(Integer fans, Integer follow) {
         Relation relation = new Relation();
         Date date = new Date();
-        relation.setFansUserId(fans);
-        relation.setFollowUserId(follow);
+        relation.setUserId1(fans);
+        relation.setUserId2(follow);
         relation.setFansTime(date);
         relation.setFansTime(date);
         relation.setFollowTime(date);
@@ -29,8 +29,8 @@ public class RelationFactory {
     public Relation newFollowRelation(Integer fans, Integer follow) {
         Relation relation = new Relation();
         Date date = new Date();
-        relation.setFansUserId(fans);
-        relation.setFollowUserId(follow);
+        relation.setUserId1(fans);
+        relation.setUserId2(follow);
         relation.setFansTime(date);
         relation.setFansTime(date);
         relation.setFollowTime(date);

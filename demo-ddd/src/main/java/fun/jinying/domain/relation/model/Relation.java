@@ -18,11 +18,11 @@ public class Relation implements Entity {
     /**
      * 粉丝
      */
-    private Integer fansUserId;
+    private Integer userId1;
     /**
      * 关注
      */
-    private Integer followUserId;
+    private Integer userId2;
     /**
      * 粉丝标记
      */

@@ -1,6 +1,8 @@
 package fun.jinying.interfaces.relation.facade;
 
 import fun.jinying.interfaces.relation.FollowCmd;
+import fun.jinying.interfaces.relation.ListFansCmd;
+import fun.jinying.interfaces.relation.facade.dto.PageAndListDTO;
 import fun.jinying.interfaces.relation.facade.dto.RelationDTO;
 
 /**
@@ -16,4 +18,12 @@ public interface RelationFacade {
      * @return
      */
     RelationDTO follow(FollowCmd followCmd);
+
+    /**
+     * 粉丝列表
+     *
+     * @param cmd
+     * @return
+     */
+    PageAndListDTO listFans(ListFansCmd cmd);
 }

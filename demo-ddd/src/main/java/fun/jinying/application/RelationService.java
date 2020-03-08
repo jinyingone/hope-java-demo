@@ -2,6 +2,9 @@ package fun.jinying.application;
 
 import fun.jinying.domain.relation.model.Relation;
 import fun.jinying.interfaces.relation.FollowCmd;
+import fun.jinying.interfaces.relation.ListFansCmd;
+
+import java.util.List;
 
 /**
  * @description: 关系
@@ -16,4 +19,20 @@ public interface RelationService {
      * @return
      */
     Relation follow(FollowCmd followCmd);
+
+    /**
+     * 粉丝
+     *
+     * @param cmd
+     * @return
+     */
+    List<Relation> listFans(ListFansCmd cmd);
+
+    /**
+     * 粉丝计数
+     *
+     * @param userId
+     * @return
+     */
+    int countFans(String userId);
 }

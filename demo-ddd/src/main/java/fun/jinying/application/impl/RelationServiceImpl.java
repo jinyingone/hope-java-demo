@@ -5,8 +5,12 @@ import fun.jinying.domain.relation.factory.RelationFactory;
 import fun.jinying.domain.relation.model.Relation;
 import fun.jinying.domain.relation.repository.RelationRepository;
 import fun.jinying.interfaces.relation.FollowCmd;
+import fun.jinying.interfaces.relation.ListFansCmd;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * @description: 关系
@@ -32,13 +36,23 @@ public class RelationServiceImpl implements RelationService {
         Relation fansRelation = relationFactory.newFansRelation(fans, follow);
         Relation followRelation = relationFactory.newFollowRelation(follow, fans);
         if (fans < follow) {
-            relationRepository.saveRelation(fansRelation);
-            relationRepository.saveRelation(followRelation);
+            relationRepository.saveFansRelation(fansRelation);
+            relationRepository.saveFollowRelation(followRelation);
         } else {
-            relationRepository.saveRelation(followRelation);
-            relationRepository.saveRelation(fansRelation);
+            relationRepository.saveFollowRelation(followRelation);
+            relationRepository.saveFansRelation(fansRelation);
         }
 
         return fansRelation;
+    }
+
+    @Override
+    public List<Relation> listFans(ListFansCmd cmd) {
+        return relationRepository.listFans(cmd.getUserId(), new Date(cmd.getTime()));
+    }
+
+    @Override
+    public int countFans(String userId) {
+        return relationRepository.countFans(userId);
     }
 }

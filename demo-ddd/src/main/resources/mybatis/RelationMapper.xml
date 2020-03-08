@@ -3,9 +3,8 @@
 <mapper namespace="fun.jinying.infrastructure.persistence.MyRelationRepository$RelationMapper">
 
     <insert id="insertOrUpdate" parameterType="fun.jinying.domain.relation.model.Relation">
-        insert into relation(fans_user_id ,follow_user_id ,fans_flag,follow_flag,follow_time ,fans_time ,create_time
-        ,update_time)
-        values(#{fansUserId},#{followUserId},#{fansFlag},#{followFlag},#{followTime},#{fansTime},#{createTime},#{updateTime})
+        insert into relation(user_id1 ,user_id2 ,fans_flag,follow_flag,follow_time ,fans_time ,create_time,update_time)
+        values(#{userId1},#{userId2},#{fansFlag},#{followFlag},#{followTime},#{fansTime},#{createTime},#{updateTime})
         on duplicate key update
         <if test="fansFlag != null">fans_flag=values(fans_flag),fans_time=values(fans_time),</if>
         <if test="followFlag != null">follow_flag=values(follow_flag),follow_time=values(follow_time),</if>
