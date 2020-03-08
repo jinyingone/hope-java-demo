@@ -3,6 +3,7 @@ package fun.jinying.domain.feed.factory;
 import fun.jinying.domain.feed.model.*;
 import fun.jinying.domain.feed.repository.FeedRepository;
 
+import javax.xml.crypto.Data;
 import java.util.Date;
 
 /**
@@ -42,5 +43,23 @@ public class FeedFactory {
         event.setFeed(feed);
         event.setType(FeedEventTypeEnum.PUBLISH);
         return event;
+    }
+
+    public FeedEvent newCreatedEvent(Feed feed) {
+        FeedCreatedEvent event = new FeedCreatedEvent();
+        event.setFeed(feed);
+        event.setType(FeedEventTypeEnum.CREATED);
+        return event;
+    }
+
+    public TimelineItem newTimelineItem(Feed feed) {
+        TimelineItem item = new TimelineItem();
+        item.setFeedId(feed.getFeedId());
+        item.setUserId(feed.getUserId());
+        item.setFeedTime(feed.getTime());
+        Date date = new Date();
+        item.setCreateTime(date);
+        item.setUpdateTime(date);
+        return item;
     }
 }

@@ -13,7 +13,12 @@ public enum FeedEventTypeEnum implements Vo {
     /**
      * 发布
      */
-    PUBLISH(1);
+    PUBLISH(1),
+    /**
+     * 创建
+     */
+    CREATED(2);
+
     private int value;
 
     FeedEventTypeEnum(int value) {

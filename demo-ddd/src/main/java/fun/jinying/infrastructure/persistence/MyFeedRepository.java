@@ -3,7 +3,9 @@ package fun.jinying.infrastructure.persistence;
 import fun.jinying.domain.feed.RepostFeed;
 import fun.jinying.domain.feed.model.Feed;
 import fun.jinying.domain.feed.model.FeedActionTypeEnum;
+import fun.jinying.domain.feed.model.TimelineItem;
 import fun.jinying.domain.feed.repository.FeedRepository;
+import net.bytebuddy.asm.Advice;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -23,6 +25,10 @@ public class MyFeedRepository implements FeedRepository {
     AtomicLong feedIdGen = new AtomicLong(1000);
     @Autowired
     private FeedMapper feedMapper;
+    @Autowired
+    private RepostMapper repostMapper;
+    @Autowired
+    private TimelineMapper timelineMapper;
 
     @Override
     public int saveFeed(Feed feed) {
@@ -41,7 +47,7 @@ public class MyFeedRepository implements FeedRepository {
 
     @Override
     public int saveRepostFeed(RepostFeed repostFeed) {
-        return feedMapper.saveRepostFeed(repostFeed);
+        return repostMapper.saveRepostFeed(repostFeed);
     }
 
     @Override
@@ -54,6 +60,11 @@ public class MyFeedRepository implements FeedRepository {
         return Optional.ofNullable(feed);
     }
 
+    @Override
+    public int saveTimeline(TimelineItem item) {
+        return timelineMapper.saveTimeline(item);
+    }
+
     @Mapper
     @Component
     public interface FeedMapper {
@@ -64,18 +75,9 @@ public class MyFeedRepository implements FeedRepository {
          * @return
          */
         @Insert("insert into feed(feed_id,source_feed_id,user_id,text,action_type,content_type,status,time,create_time,update_time)" +
-                "values(#{feedId},#{sourceFeedId},#{userId},#{text},#{actionType},#{contentType},#{status},#{time},#{createTime},#{updateTime})")
+                "values(#{feedId},#{sourceFeedId},#{userId},#{text},#{actionType},#{contentType},#{status},#{time},#{createTime},#{updateTime}) " +
+                "on duplicate key update status=values(status),update_time=values(update_time)")
         int saveFeed(Feed feed);
-
-        /**
-         * 保存转发
-         *
-         * @param repostFeed
-         * @return
-         */
-        @Insert("insert into repost_feed(feed_id,user_id,status,reposted_feed_id,source_feed_id,feed_link,time,create_time,update_time)" +
-                "values(#{feedId},#{userId},#{status},#{repostedFeedId},#{sourceFeedId},#{feedLink},#{time},#{createTime},#{updateTime})")
-        int saveRepostFeed(RepostFeed repostFeed);
 
         /**
          * 查询feed
@@ -88,5 +90,28 @@ public class MyFeedRepository implements FeedRepository {
 
         @Select("select * from repost_feed where feed_id=#{feedId}")
         RepostFeed getRepostFeed(Long feedId);
+    }
+
+    @Mapper
+    @Component
+    public interface RepostMapper {
+        /**
+         * 保存转发
+         *
+         * @param repostFeed
+         * @return
+         */
+        @Insert("insert into repost_feed(feed_id,user_id,status,reposted_feed_id,source_feed_id,feed_link,time,create_time,update_time)" +
+                "values(#{feedId},#{userId},#{status},#{repostedFeedId},#{sourceFeedId},#{feedLink},#{time},#{createTime},#{updateTime})")
+        int saveRepostFeed(RepostFeed repostFeed);
+    }
+
+    @Mapper
+    @Component
+    public interface TimelineMapper {
+        @Insert("insert into timeline (user_id,feed_id,feed_time,create_time,update_time) " +
+                "values(#{userId},#{feedId},#{feedTime},#{createTime},#{updateTime}) " +
+                "on duplicate key update feed_time=values(feed_time),update_time=values(update_time)")
+        int saveTimeline(TimelineItem item);
     }
 }

@@ -29,14 +29,26 @@ public class FeedEventConsumer {
 
     @RabbitListener(bindings = {
             @QueueBinding(exchange = @Exchange(value = "demo-ddd.feed", type = ExchangeTypes.TOPIC),
-                    key = "feed.#",
-                    value = @Queue(name = "${spring.application.name}.feed", durable = "true"))
+                    key = {"feed.PUBLISH"},
+                    value = @Queue(name = "${spring.application.name}.feedPublish", durable = "true"))
     })
-    public void onMessage(Message message) {
+    public void onPublishMessage(Message message) {
         String body = new String(message.getBody(), StandardCharsets.UTF_8);
         log.info("consuming,body={},properties={}", body, message.getMessageProperties());
         FeedEvent feedEvent = JSON.fromJson(body, FeedEvent.class);
 
         Feed feed = feedService.publish(feedEvent);
+    }
+
+    @RabbitListener(bindings = {
+            @QueueBinding(exchange = @Exchange(value = "demo-ddd.feed", type = ExchangeTypes.TOPIC),
+                    key = {"feed.CREATED"},
+                    value = @Queue(name = "${spring.application.name}.feedCreated", durable = "true"))
+    })
+    public void onCreatedMessage(Message message) {
+        String body = new String(message.getBody(), StandardCharsets.UTF_8);
+        log.info("consuming,body={},properties={}", body, message.getMessageProperties());
+        FeedEvent feedEvent = JSON.fromJson(body, FeedEvent.class);
+        feedService.saveTimeLine(feedEvent);
     }
 }

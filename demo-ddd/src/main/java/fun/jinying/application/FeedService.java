@@ -34,4 +34,8 @@ public interface FeedService {
      */
     Feed repost(RepostCmd repostCmd);
 
+    /**
+     * @param feedEvent
+     */
+    void saveTimeLine(FeedEvent feedEvent);
 }

@@ -64,3 +64,15 @@ update_time datetime not null
 create unique index uk_r_ff on relation(user_id1,user_id2);
 comment on table relation is '用户关系';
 
+
+DROP TABLE IF EXISTS timeline;
+CREATE table timeline(
+id int IDENTITY PRIMARY KEY,
+user_id int not null,
+feed_id bigint not null,
+feed_time datetime not null,
+create_time datetime not null,
+update_time datetime not null
+);
+create unique index uk_tl_uf on timeline(user_id,feed_id);
+comment on table timeline is '用户时间线';

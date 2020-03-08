@@ -8,6 +8,7 @@ import fun.jinying.domain.feed.model.FeedActionTypeEnum;
 import fun.jinying.domain.feed.model.FeedEvent;
 import fun.jinying.domain.feed.repository.FeedRepository;
 import fun.jinying.domain.shard.model.EventProducer;
+import fun.jinying.infrastructure.message.FeedEventProducer;
 import fun.jinying.interfaces.exception.InterfaceException;
 import fun.jinying.interfaces.exception.InterfaceStatusEnum;
 import fun.jinying.interfaces.feed.PublishCmd;
@@ -43,8 +44,8 @@ public class FeedServiceImpl implements FeedService {
     public Feed publish(FeedEvent feedEvent) {
         Feed feed = feedEvent.getFeed();
         feedRepository.saveFeed(feed);
+        feedEventEventProducer.sendEvent(feedFactory.newCreatedEvent(feed));
         return feed;
-        // TODO: 20-3-7 保存完成事件
     }
 
     @Override
@@ -56,5 +57,10 @@ public class FeedServiceImpl implements FeedService {
         feedRepository.saveFeed(feed);
         feedRepository.saveRepostFeed(repostFeed);
         return feed;
+    }
+
+    @Override
+    public void saveTimeLine(FeedEvent feedEvent) {
+        feedRepository.saveTimeline(feedFactory.newTimelineItem(feedEvent.getFeed()));
     }
 }
