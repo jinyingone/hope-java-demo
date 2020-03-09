@@ -1,4 +1,4 @@
-package fun.jinying.interfaces.exception;
+package fun.jinying.interfaces.common.exception;
 
 import lombok.Getter;
 

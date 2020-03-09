@@ -1,4 +1,4 @@
-package fun.jinying.interfaces.relation.facade.dto;
+package fun.jinying.interfaces.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

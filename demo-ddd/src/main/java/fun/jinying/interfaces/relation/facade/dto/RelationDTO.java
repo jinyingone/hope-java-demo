@@ -16,4 +16,8 @@ public class RelationDTO {
     private String followUserId;
     private RelationFlagEnum flag;
     private Date time;
+
+    public static Long getScore(RelationDTO dto) {
+        return -dto.getTime().getTime();
+    }
 }

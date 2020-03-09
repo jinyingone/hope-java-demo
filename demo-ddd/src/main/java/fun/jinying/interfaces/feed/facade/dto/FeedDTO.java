@@ -10,16 +10,13 @@ import lombok.NoArgsConstructor;
  * @create: 2020-03-06 22:25
  **/
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class FeedDTO {
     public String feedId;
     private String userId;
+    private int status;
     public String text;
     public Long time;
-
-    public FeedDTO(String userId, String text) {
-        this.userId = userId;
-        this.text = text;
-    }
+    public int actionType;
+    public int contentType;
+    private RepostFeedDTO repost;
 }

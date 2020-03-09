@@ -1,5 +1,6 @@
 package fun.jinying.interfaces.feed;
 
+import fun.jinying.interfaces.common.PageAndList;
 import fun.jinying.interfaces.feed.facade.FeedFacade;
 import fun.jinying.interfaces.feed.facade.dto.FeedDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,12 @@ public class FeedController {
             , @RequestHeader("log-user-id") String logUserId) {
         repostCmd.setLogUserId(Integer.valueOf(logUserId));
         return feedFacade.repost(repostCmd);
+    }
+
+    @RequestMapping(value = "/list_timeline", method = RequestMethod.POST)
+    public PageAndList listTimeline(@Validated @RequestBody ListTimelineCmd cmd
+            , @RequestHeader("log-user-id") String logUserId) {
+        cmd.setLog_user_id(logUserId);
+        return feedFacade.listTimeline(cmd);
     }
 }

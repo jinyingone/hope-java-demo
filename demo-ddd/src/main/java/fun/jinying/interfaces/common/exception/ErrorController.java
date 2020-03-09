@@ -1,4 +1,4 @@
-package fun.jinying.interfaces.exception;
+package fun.jinying.interfaces.common.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;

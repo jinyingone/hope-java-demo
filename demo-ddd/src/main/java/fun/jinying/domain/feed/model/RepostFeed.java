@@ -1,5 +1,6 @@
-package fun.jinying.domain.feed;
+package fun.jinying.domain.feed.model;
 
+import fun.jinying.domain.feed.model.Feed;
 import fun.jinying.domain.feed.model.FeedStatusEnum;
 import lombok.Data;
 
@@ -21,6 +22,7 @@ public class RepostFeed {
      */
     private Long repostedFeedId;
     private List<String> feedLink;
+    private List<RepostFeedLinkItem> repostFeedLinkItems;
     /**
      * 源feedId
      */

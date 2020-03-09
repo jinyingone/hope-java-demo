@@ -1,6 +1,5 @@
 package fun.jinying.domain.feed.model;
 
-import fun.jinying.domain.feed.RepostFeed;
 import fun.jinying.domain.shard.model.Entity;
 import lombok.Data;
 

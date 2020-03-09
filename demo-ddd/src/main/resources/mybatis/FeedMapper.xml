@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="fun.jinying.infrastructure.persistence.MyFeedRepository$FeedMapper">
+    <select id="listFeeds" resultType="fun.jinying.domain.feed.model.Feed">
+        SELECT * FROM feed where feed_id in
+        <foreach collection="feedIds" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+</mapper>

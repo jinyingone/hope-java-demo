@@ -1,4 +1,4 @@
-package fun.jinying.interfaces.exception;
+package fun.jinying.interfaces.common.exception;
 
 import lombok.Getter;
 
@@ -31,7 +31,7 @@ public enum InterfaceStatusEnum {
     /**
      * feed相关错误
      */
-    FEED_NOT_EXITS(310, "操作失败");
+    FEED_NOT_EXITS(310, "动态已删除");
 
 
     private int value;

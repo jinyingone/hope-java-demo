@@ -3,7 +3,6 @@ package fun.jinying.domain.feed.factory;
 import fun.jinying.domain.feed.model.*;
 import fun.jinying.domain.feed.repository.FeedRepository;
 
-import javax.xml.crypto.Data;
 import java.util.Date;
 
 /**

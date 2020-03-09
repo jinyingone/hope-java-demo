@@ -1,9 +1,11 @@
 package fun.jinying.domain.feed.repository;
 
-import fun.jinying.domain.feed.RepostFeed;
+import fun.jinying.domain.feed.model.RepostFeed;
 import fun.jinying.domain.feed.model.Feed;
 import fun.jinying.domain.feed.model.TimelineItem;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -51,6 +53,8 @@ public interface FeedRepository {
      */
     Optional<Feed> getFeed(Long feedId);
 
+    List<Feed> listFeeds(String... feedIds);
+
     /**
      * 保存timeline
      *
@@ -58,4 +62,22 @@ public interface FeedRepository {
      * @return
      */
     int saveTimeline(TimelineItem item);
+
+    /**
+     * 列出timeline
+     *
+     * @param userId
+     * @param fromDate
+     * @param count
+     * @return
+     */
+    List<TimelineItem> listTimeLine(Integer userId, Date fromDate, int count);
+
+    /**
+     * timeline计数
+     *
+     * @param logUserId
+     * @return
+     */
+    int countTimelineItems(Integer logUserId);
 }
