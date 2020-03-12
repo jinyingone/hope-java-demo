@@ -18,4 +18,5 @@ public class UserDTOAssembler {
         userDTO.setPhone(user.getPhone());
         return userDTO;
     }
+
 }

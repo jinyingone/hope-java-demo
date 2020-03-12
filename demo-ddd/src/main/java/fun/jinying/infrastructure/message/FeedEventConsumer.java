@@ -1,6 +1,7 @@
 package fun.jinying.infrastructure.message;
 
 import fun.jinying.application.FeedService;
+import fun.jinying.application.TimelineService;
 import fun.jinying.domain.feed.model.Feed;
 import fun.jinying.domain.feed.model.FeedEvent;
 import fun.jinying.infrastructure.utils.JSON;
@@ -26,6 +27,8 @@ import java.nio.charset.StandardCharsets;
 public class FeedEventConsumer {
     @Autowired
     private FeedService feedService;
+    @Autowired
+    private TimelineService timelineService;
 
     @RabbitListener(bindings = {
             @QueueBinding(exchange = @Exchange(value = "demo-ddd.feed", type = ExchangeTypes.TOPIC),
@@ -49,6 +52,6 @@ public class FeedEventConsumer {
         String body = new String(message.getBody(), StandardCharsets.UTF_8);
         log.info("consuming,body={},properties={}", body, message.getMessageProperties());
         FeedEvent feedEvent = JSON.fromJson(body, FeedEvent.class);
-        feedService.saveTimeLine(feedEvent);
+        timelineService.saveTimeLine(feedEvent);
     }
 }

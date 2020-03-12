@@ -1,7 +1,5 @@
 package fun.jinying.domain.feed.model;
 
-import fun.jinying.domain.feed.model.Feed;
-import fun.jinying.domain.feed.model.FeedStatusEnum;
 import lombok.Data;
 
 import java.util.Date;

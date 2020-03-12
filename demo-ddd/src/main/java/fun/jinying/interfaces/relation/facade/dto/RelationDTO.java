@@ -1,6 +1,5 @@
 package fun.jinying.interfaces.relation.facade.dto;
 
-import fun.jinying.domain.relation.model.RelationFlagEnum;
 import lombok.Data;
 
 import java.util.Date;
@@ -14,7 +13,7 @@ import java.util.Date;
 public class RelationDTO {
     private String fansUserId;
     private String followUserId;
-    private RelationFlagEnum flag;
+    private int relation;
     private Date time;
 
     public static Long getScore(RelationDTO dto) {

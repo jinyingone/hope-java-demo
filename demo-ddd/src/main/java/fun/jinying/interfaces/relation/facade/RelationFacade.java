@@ -35,4 +35,13 @@ public interface RelationFacade {
      * @return
      */
     PageAndList listFollow(ListFollowCmd cmd);
+
+    /**
+     * 查询用户关系
+     *
+     * @param userId1
+     * @param userId2
+     * @return
+     */
+    RelationDTO getRelation(Integer userId1, Integer userId2);
 }

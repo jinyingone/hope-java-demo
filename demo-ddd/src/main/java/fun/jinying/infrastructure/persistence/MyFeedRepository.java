@@ -1,8 +1,8 @@
 package fun.jinying.infrastructure.persistence;
 
-import fun.jinying.domain.feed.model.RepostFeed;
 import fun.jinying.domain.feed.model.Feed;
 import fun.jinying.domain.feed.model.FeedActionTypeEnum;
+import fun.jinying.domain.feed.model.RepostFeed;
 import fun.jinying.domain.feed.model.TimelineItem;
 import fun.jinying.domain.feed.repository.FeedRepository;
 import org.apache.ibatis.annotations.Insert;
@@ -76,7 +76,7 @@ public class MyFeedRepository implements FeedRepository {
                     break;
                 }
             }
-            if (!match){
+            if (!match) {
                 result.add(null);
             }
         }

@@ -33,4 +33,12 @@ public interface UserServiceFacade {
      * @return
      */
     UserDTO update(UserDTO userDTO);
+
+    /**
+     * 查询用户
+     *
+     * @param userId
+     * @return
+     */
+    UserDTO getUser(String userId);
 }

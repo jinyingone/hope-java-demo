@@ -48,15 +48,15 @@ public class Relation implements Entity {
      * @param flag
      * @return
      */
-    public RelationFlagEnum getRelationFlag(RelationFlagEnum flag) {
+    public RelationFlagEnum getRelationU1AndU2() {
         if (this.getFansFlag() == RelationFlagEnum.FANS && RelationFlagEnum.FOLLOW == this.getFollowFlag()) {
             return RelationFlagEnum.BOTH_FOLLOW;
         }
-        if (flag == RelationFlagEnum.FANS) {
-            return this.getFansFlag();
+        if (this.getFansFlag() != null) {
+            return getFansFlag();
         }
-        if (flag == RelationFlagEnum.FOLLOW) {
-            return this.getFollowFlag();
+        if (this.getFollowFlag() != null) {
+            return getFollowFlag();
         }
         return RelationFlagEnum.NONE;
     }

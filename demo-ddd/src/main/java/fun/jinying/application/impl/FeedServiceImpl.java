@@ -1,22 +1,19 @@
 package fun.jinying.application.impl;
 
 import fun.jinying.application.FeedService;
-import fun.jinying.domain.feed.model.*;
 import fun.jinying.domain.feed.factory.FeedFactory;
+import fun.jinying.domain.feed.model.Feed;
+import fun.jinying.domain.feed.model.FeedActionTypeEnum;
+import fun.jinying.domain.feed.model.FeedEvent;
+import fun.jinying.domain.feed.model.RepostFeed;
 import fun.jinying.domain.feed.repository.FeedRepository;
 import fun.jinying.domain.shard.model.EventProducer;
 import fun.jinying.interfaces.common.exception.InterfaceException;
 import fun.jinying.interfaces.common.exception.InterfaceStatusEnum;
-import fun.jinying.interfaces.feed.ListTimelineCmd;
 import fun.jinying.interfaces.feed.PublishCmd;
 import fun.jinying.interfaces.feed.RepostCmd;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * @description:
@@ -60,34 +57,5 @@ public class FeedServiceImpl implements FeedService {
         feedRepository.saveRepostFeed(repostFeed);
         feedEventEventProducer.sendEvent(feedFactory.newCreatedEvent(feed));
         return feed;
-    }
-
-    @Override
-    public void saveTimeLine(FeedEvent feedEvent) {
-        feedRepository.saveTimeline(feedFactory.newTimelineItem(feedEvent.getFeed()));
-    }
-
-    @Override
-    public List<Feed> listTimeline(ListTimelineCmd cmd) {
-        Integer logUserId = Integer.valueOf(cmd.getLog_user_id());
-        List<TimelineItem> timelineItems = feedRepository.listTimeLine(logUserId, new Date(-cmd.getScore()), cmd.getCount());
-        return timelineItems.stream()
-                .map(item -> feedRepository.getFeed(item.getFeedId()).orElse(null))
-                .map(feed -> {
-                    if (feed.getActionType() == FeedActionTypeEnum.REPOST) {
-                        List<Feed> feeds = feedRepository.listFeeds(feed.getRepostFeed().getFeedLink().toArray(new String[0]));
-                        List<RepostFeedLinkItem> items = feeds.stream().map(f -> new RepostFeedLinkItem(f.getFeedId(), f.getUserId(), f.getStatus(), f.getText())).collect(Collectors.toList());
-                        feed.getRepostFeed().setRepostFeedLinkItems(items);
-                    }
-                    return feed;
-                })
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public int countTimeline(ListTimelineCmd cmd) {
-        Integer logUserId = Integer.valueOf(cmd.getLog_user_id());
-        return feedRepository.countTimelineItems(logUserId);
     }
 }

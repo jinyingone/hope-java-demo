@@ -17,5 +17,5 @@ public class ListTimelineCmd {
     @Min(0)
     @Max(1000)
     private int count;
-    private String log_user_id;
+    private String logUserId;
 }

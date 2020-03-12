@@ -42,4 +42,19 @@ public class RelationFactory {
         return relation;
     }
 
+    /**
+     * 创建一个空关系
+     *
+     * @param userId1
+     * @param userId2
+     * @return
+     */
+    public Relation newNonRelation(Integer userId1, Integer userId2) {
+        Relation relation = new Relation();
+        relation.setUserId1(userId1);
+        relation.setUserId2(userId2);
+        relation.setFansFlag(RelationFlagEnum.NONE);
+        relation.setFollowFlag(RelationFlagEnum.NONE);
+        return relation;
+    }
 }

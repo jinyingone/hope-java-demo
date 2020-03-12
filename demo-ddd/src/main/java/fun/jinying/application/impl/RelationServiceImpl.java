@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @description: 关系
@@ -65,5 +66,11 @@ public class RelationServiceImpl implements RelationService {
     @Override
     public int countFollow(String userId) {
         return relationRepository.countFollow(Integer.valueOf(userId));
+    }
+
+    @Override
+    public Relation getRelation(Integer userId1, Integer userId2) {
+        Optional<Relation> relation = relationRepository.getByUserId1AndUserId2(userId1, userId2);
+        return relation.orElse(relationFactory.newNonRelation(userId1, userId2));
     }
 }

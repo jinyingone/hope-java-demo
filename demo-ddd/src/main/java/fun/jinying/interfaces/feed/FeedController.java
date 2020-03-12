@@ -35,7 +35,7 @@ public class FeedController {
     @RequestMapping(value = "/list_timeline", method = RequestMethod.POST)
     public PageAndList listTimeline(@Validated @RequestBody ListTimelineCmd cmd
             , @RequestHeader("log-user-id") String logUserId) {
-        cmd.setLog_user_id(logUserId);
+        cmd.setLogUserId(logUserId);
         return feedFacade.listTimeline(cmd);
     }
 }

@@ -4,6 +4,7 @@ import fun.jinying.domain.relation.model.Relation;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @description: 关系存储
@@ -60,4 +61,13 @@ public interface RelationRepository {
      * @return
      */
     int countFollow(Integer userId);
+
+    /**
+     * 获取两个用户的关系
+     *
+     * @param userId1
+     * @param userId2
+     * @return
+     */
+    Optional<Relation> getByUserId1AndUserId2(Integer userId1, Integer userId2);
 }

@@ -52,4 +52,13 @@ public interface RelationService {
      * @return
      */
     int countFollow(String userId);
+
+    /**
+     * 获取两个用户的关系
+     *
+     * @param userId1
+     * @param userId2
+     * @return
+     */
+    Relation getRelation(Integer userId1, Integer userId2);
 }

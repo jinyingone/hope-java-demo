@@ -49,4 +49,10 @@ public class RelationFacadeImpl implements RelationFacade {
         pageAndList.init(totalCount, relationList, RelationDtoAssembler::toDTO, RelationDTO::getScore, 0);
         return pageAndList;
     }
+
+    @Override
+    public RelationDTO getRelation(Integer userId1, Integer userId2) {
+        Relation relation = relationService.getRelation(userId1, userId2);
+        return RelationDtoAssembler.toDTO(relation);
+    }
 }

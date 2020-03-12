@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @description: 关系存储实现
@@ -49,7 +50,13 @@ public class MyRelationRepository implements RelationRepository {
 
     @Override
     public int countFollow(Integer userId) {
-        return relationMapper.countFollow(userId,RelationFlagEnum.FOLLOW);
+        return relationMapper.countFollow(userId, RelationFlagEnum.FOLLOW);
+    }
+
+    @Override
+    public Optional<Relation> getByUserId1AndUserId2(Integer userId1, Integer userId2) {
+        Relation relation = relationMapper.getByUserId1AndUserId2(userId1, userId2);
+        return Optional.ofNullable(relation);
     }
 
     @Mapper
@@ -86,5 +93,8 @@ public class MyRelationRepository implements RelationRepository {
 
         @Select("select count(*) from relation where user_id1=#{userId} and follow_flag=#{relation}")
         int countFollow(@Param("userId") Integer userId, @Param("relation") RelationFlagEnum relation);
+
+        @Select("select * from relation where user_id1=#{userId1} and user_id2=#{userId2}")
+        Relation getByUserId1AndUserId2(@Param("userId1") Integer userId1, @Param("userId2") Integer userId2);
     }
 }

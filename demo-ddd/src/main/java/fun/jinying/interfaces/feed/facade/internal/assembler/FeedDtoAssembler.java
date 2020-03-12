@@ -1,8 +1,8 @@
 package fun.jinying.interfaces.feed.facade.internal.assembler;
 
-import fun.jinying.domain.feed.model.RepostFeed;
 import fun.jinying.domain.feed.model.Feed;
 import fun.jinying.domain.feed.model.FeedActionTypeEnum;
+import fun.jinying.domain.feed.model.RepostFeed;
 import fun.jinying.interfaces.feed.facade.dto.FeedDTO;
 import fun.jinying.interfaces.feed.facade.dto.RepostFeedDTO;
 

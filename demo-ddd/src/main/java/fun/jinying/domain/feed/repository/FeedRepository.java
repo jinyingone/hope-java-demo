@@ -1,7 +1,7 @@
 package fun.jinying.domain.feed.repository;
 
-import fun.jinying.domain.feed.model.RepostFeed;
 import fun.jinying.domain.feed.model.Feed;
+import fun.jinying.domain.feed.model.RepostFeed;
 import fun.jinying.domain.feed.model.TimelineItem;
 
 import java.util.Date;
