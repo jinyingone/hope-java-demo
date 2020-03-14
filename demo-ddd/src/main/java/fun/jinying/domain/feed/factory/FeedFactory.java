@@ -52,9 +52,13 @@ public class FeedFactory {
     }
 
     public TimelineItem newTimelineItem(Feed feed) {
+        return newTimelineItem(feed.getUserId(), feed);
+    }
+
+    public TimelineItem newTimelineItem(Integer userId, Feed feed) {
         TimelineItem item = new TimelineItem();
         item.setFeedId(feed.getFeedId());
-        item.setUserId(feed.getUserId());
+        item.setUserId(userId);
         item.setFeedTime(feed.getTime());
         Date date = new Date();
         item.setCreateTime(date);

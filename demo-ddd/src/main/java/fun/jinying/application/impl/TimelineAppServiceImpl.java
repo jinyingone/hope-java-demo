@@ -4,10 +4,12 @@ import fun.jinying.application.TimelineAppService;
 import fun.jinying.domain.feed.factory.FeedFactory;
 import fun.jinying.domain.feed.model.*;
 import fun.jinying.domain.feed.repository.FeedRepository;
+import fun.jinying.domain.relation.model.Relation;
 import fun.jinying.domain.relation.repository.RelationRepository;
 import fun.jinying.domain.user.repository.UserRepository;
 import fun.jinying.interfaces.feed.ListTimelineCmd;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -52,8 +54,12 @@ public class TimelineAppServiceImpl implements TimelineAppService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void saveTimeLine(FeedEvent feedEvent) {
         feedRepository.saveTimeline(feedFactory.newTimelineItem(feedEvent.getFeed()));
+        //todo 这个地方应该发送一个当前用户已经操作完成的事件
+        List<Relation> relations = relationRepository.listFans(feedEvent.getFeed().getUserId(), feedEvent.getFeed().getCreateTime());
+        relations.forEach(relation -> feedRepository.saveTimeline(feedFactory.newTimelineItem(relation.getUserId2(), feedEvent.getFeed())));
     }
 
     @Override
