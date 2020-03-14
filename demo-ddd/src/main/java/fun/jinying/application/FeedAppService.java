@@ -10,7 +10,7 @@ import fun.jinying.interfaces.feed.RepostCmd;
  * @author: sjy
  * @create: 2020-03-06 22:30
  **/
-public interface FeedService {
+public interface FeedAppService {
     /**
      * 发布feed
      *

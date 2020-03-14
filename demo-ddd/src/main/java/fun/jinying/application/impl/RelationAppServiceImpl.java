@@ -1,6 +1,6 @@
 package fun.jinying.application.impl;
 
-import fun.jinying.application.RelationService;
+import fun.jinying.application.RelationAppService;
 import fun.jinying.domain.relation.factory.RelationFactory;
 import fun.jinying.domain.relation.model.Relation;
 import fun.jinying.domain.relation.repository.RelationRepository;
@@ -20,11 +20,11 @@ import java.util.Optional;
  * @create: 2020-03-08 10:22
  **/
 @Component
-public class RelationServiceImpl implements RelationService {
+public class RelationAppServiceImpl implements RelationAppService {
     private RelationRepository relationRepository;
     private RelationFactory relationFactory;
 
-    public RelationServiceImpl(RelationRepository relationRepository, RelationFactory relationFactory) {
+    public RelationAppServiceImpl(RelationRepository relationRepository, RelationFactory relationFactory) {
         this.relationRepository = relationRepository;
         this.relationFactory = relationFactory;
     }

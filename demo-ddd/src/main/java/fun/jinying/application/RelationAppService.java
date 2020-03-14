@@ -12,7 +12,7 @@ import java.util.List;
  * @author: sjy
  * @create: 2020-03-08 10:20
  **/
-public interface RelationService {
+public interface RelationAppService {
     /**
      * 关注
      *

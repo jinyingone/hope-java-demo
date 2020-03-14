@@ -1,6 +1,6 @@
 package fun.jinying.interfaces.relation.facade.internal;
 
-import fun.jinying.application.RelationService;
+import fun.jinying.application.RelationAppService;
 import fun.jinying.domain.relation.model.Relation;
 import fun.jinying.interfaces.common.PageAndList;
 import fun.jinying.interfaces.relation.FollowCmd;
@@ -22,19 +22,19 @@ import java.util.List;
 @Component
 public class RelationFacadeImpl implements RelationFacade {
     @Autowired
-    private RelationService relationService;
+    private RelationAppService relationAppService;
 
     @Override
     public RelationDTO follow(FollowCmd followCmd) {
-        Relation relation = relationService.follow(followCmd);
+        Relation relation = relationAppService.follow(followCmd);
         return RelationDtoAssembler.toDTO(relation);
     }
 
     @Override
     public PageAndList listFans(ListFansCmd cmd) {
         cmd.setTime(cmd.getScore() == 0 ? System.currentTimeMillis() : -cmd.getScore());
-        List<Relation> relationList = relationService.listFans(cmd);
-        int totalCount = relationService.countFans(cmd.getUserId());
+        List<Relation> relationList = relationAppService.listFans(cmd);
+        int totalCount = relationAppService.countFans(cmd.getUserId());
         PageAndList<Relation, RelationDTO> pageAndList = new PageAndList<>();
         pageAndList.init(totalCount, relationList, RelationDtoAssembler::toDTO, RelationDTO::getScore, 0);
         return pageAndList;
@@ -43,8 +43,8 @@ public class RelationFacadeImpl implements RelationFacade {
     @Override
     public PageAndList listFollow(ListFollowCmd cmd) {
         cmd.setTime(cmd.getScore() == 0 ? System.currentTimeMillis() : -cmd.getScore());
-        List<Relation> relationList = relationService.listFollow(cmd);
-        int totalCount = relationService.countFollow(cmd.getUserId());
+        List<Relation> relationList = relationAppService.listFollow(cmd);
+        int totalCount = relationAppService.countFollow(cmd.getUserId());
         PageAndList<Relation, RelationDTO> pageAndList = new PageAndList<>();
         pageAndList.init(totalCount, relationList, RelationDtoAssembler::toDTO, RelationDTO::getScore, 0);
         return pageAndList;
@@ -52,7 +52,7 @@ public class RelationFacadeImpl implements RelationFacade {
 
     @Override
     public RelationDTO getRelation(Integer userId1, Integer userId2) {
-        Relation relation = relationService.getRelation(userId1, userId2);
+        Relation relation = relationAppService.getRelation(userId1, userId2);
         return RelationDtoAssembler.toDTO(relation);
     }
 }

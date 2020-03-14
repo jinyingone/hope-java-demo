@@ -11,7 +11,7 @@ import java.util.List;
  * @author: sjy
  * @create: 2020-03-12 11:52
  **/
-public interface TimelineService {
+public interface TimelineAppService {
     /**
      * 列出timeline
      *

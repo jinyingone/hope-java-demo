@@ -1,7 +1,7 @@
 package fun.jinying.infrastructure.message;
 
-import fun.jinying.application.FeedService;
-import fun.jinying.application.TimelineService;
+import fun.jinying.application.FeedAppService;
+import fun.jinying.application.TimelineAppService;
 import fun.jinying.domain.feed.model.Feed;
 import fun.jinying.domain.feed.model.FeedEvent;
 import fun.jinying.infrastructure.utils.JSON;
@@ -26,9 +26,9 @@ import java.nio.charset.StandardCharsets;
 @Slf4j
 public class FeedEventConsumer {
     @Autowired
-    private FeedService feedService;
+    private FeedAppService feedAppService;
     @Autowired
-    private TimelineService timelineService;
+    private TimelineAppService timelineAppService;
 
     @RabbitListener(bindings = {
             @QueueBinding(exchange = @Exchange(value = "demo-ddd.feed", type = ExchangeTypes.TOPIC),
@@ -40,7 +40,7 @@ public class FeedEventConsumer {
         log.info("consuming,body={},properties={}", body, message.getMessageProperties());
         FeedEvent feedEvent = JSON.fromJson(body, FeedEvent.class);
 
-        Feed feed = feedService.publish(feedEvent);
+        Feed feed = feedAppService.publish(feedEvent);
     }
 
     @RabbitListener(bindings = {
@@ -52,6 +52,6 @@ public class FeedEventConsumer {
         String body = new String(message.getBody(), StandardCharsets.UTF_8);
         log.info("consuming,body={},properties={}", body, message.getMessageProperties());
         FeedEvent feedEvent = JSON.fromJson(body, FeedEvent.class);
-        timelineService.saveTimeLine(feedEvent);
+        timelineAppService.saveTimeLine(feedEvent);
     }
 }

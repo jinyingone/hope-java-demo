@@ -1,6 +1,6 @@
 package fun.jinying.application.impl;
 
-import fun.jinying.application.UserService;
+import fun.jinying.application.UserAppService;
 import fun.jinying.domain.shard.model.EventProducer;
 import fun.jinying.domain.user.factory.UserFactory;
 import fun.jinying.domain.user.model.User;
@@ -18,12 +18,12 @@ import java.util.Optional;
  * @create: 2020-02-28 18:08
  **/
 @Component
-public class UserServiceImpl implements UserService {
+public class UserAppServiceImpl implements UserAppService {
     private UserFactory userFactory;
     private UserRepository userRepository;
     private EventProducer<UserEvent> userEventProducer;
 
-    public UserServiceImpl(UserFactory userFactory, UserRepository userRepository, EventProducer<UserEvent> userEventProducer) {
+    public UserAppServiceImpl(UserFactory userFactory, UserRepository userRepository, EventProducer<UserEvent> userEventProducer) {
         this.userFactory = userFactory;
         this.userRepository = userRepository;
         this.userEventProducer = userEventProducer;

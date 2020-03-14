@@ -1,6 +1,6 @@
 package fun.jinying.application.impl;
 
-import fun.jinying.application.FeedService;
+import fun.jinying.application.FeedAppService;
 import fun.jinying.domain.feed.factory.FeedFactory;
 import fun.jinying.domain.feed.model.Feed;
 import fun.jinying.domain.feed.model.FeedActionTypeEnum;
@@ -21,12 +21,12 @@ import org.springframework.transaction.annotation.Transactional;
  * @create: 2020-03-06 22:31
  **/
 @Component
-public class FeedServiceImpl implements FeedService {
+public class FeedAppServiceImpl implements FeedAppService {
     private FeedFactory feedFactory;
     private EventProducer<FeedEvent> feedEventEventProducer;
     private FeedRepository feedRepository;
 
-    public FeedServiceImpl(FeedFactory feedFactory, EventProducer<FeedEvent> feedEventEventProducer, FeedRepository feedRepository) {
+    public FeedAppServiceImpl(FeedFactory feedFactory, EventProducer<FeedEvent> feedEventEventProducer, FeedRepository feedRepository) {
         this.feedFactory = feedFactory;
         this.feedEventEventProducer = feedEventEventProducer;
         this.feedRepository = feedRepository;

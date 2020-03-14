@@ -1,7 +1,7 @@
 package fun.jinying.interfaces.feed.facade.internal;
 
-import fun.jinying.application.FeedService;
-import fun.jinying.application.TimelineService;
+import fun.jinying.application.FeedAppService;
+import fun.jinying.application.TimelineAppService;
 import fun.jinying.domain.feed.model.Feed;
 import fun.jinying.interfaces.common.PageAndList;
 import fun.jinying.interfaces.feed.ListTimelineCmd;
@@ -23,34 +23,34 @@ import java.util.List;
  **/
 @Component
 public class FeedFacadeImpl implements FeedFacade {
-    private FeedService feedService;
-    private TimelineService timelineService;
+    private FeedAppService feedAppService;
+    private TimelineAppService timelineAppService;
     private UserServiceFacade userServiceFacade;
     private RelationFacade relationFacade;
 
-    public FeedFacadeImpl(FeedService feedService, TimelineService timelineService, UserServiceFacade userServiceFacade, RelationFacade relationFacade) {
-        this.feedService = feedService;
-        this.timelineService = timelineService;
+    public FeedFacadeImpl(FeedAppService feedAppService, TimelineAppService timelineAppService, UserServiceFacade userServiceFacade, RelationFacade relationFacade) {
+        this.feedAppService = feedAppService;
+        this.timelineAppService = timelineAppService;
         this.userServiceFacade = userServiceFacade;
         this.relationFacade = relationFacade;
     }
 
     @Override
     public FeedDTO publish(PublishCmd publishCmd) {
-        Feed feed = feedService.publish(publishCmd);
+        Feed feed = feedAppService.publish(publishCmd);
         return FeedDtoAssembler.toDTO(feed);
     }
 
     @Override
     public FeedDTO repost(RepostCmd repostCmd) {
-        Feed feed = feedService.repost(repostCmd);
+        Feed feed = feedAppService.repost(repostCmd);
         return FeedDtoAssembler.toDTO(feed);
     }
 
     @Override
     public PageAndList listTimeline(ListTimelineCmd cmd) {
-        List<Feed> list = timelineService.listTimeline(cmd);
-        int newCount = timelineService.countTimeline(cmd);
+        List<Feed> list = timelineAppService.listTimeline(cmd);
+        int newCount = timelineAppService.countTimeline(cmd);
         PageAndList<Feed, FeedDTO> pageAndList = new PageAndList<>();
         pageAndList.init(newCount, list, FeedDtoAssembler::toDTO, FeedDtoAssembler::getScore, 0);
         pageAndList.getList().forEach(feedDTO -> feedDTO.andUserDTO(userServiceFacade::getUser).andRelationDTO(cmd.getLogUserId(), relationFacade::getRelation));

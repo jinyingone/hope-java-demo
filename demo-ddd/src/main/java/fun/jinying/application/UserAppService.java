@@ -10,7 +10,7 @@ import java.util.Optional;
  * @author: sjy
  * @create: 2020-02-28 18:06
  **/
-public interface UserService {
+public interface UserAppService {
 
     /**
      * 注册

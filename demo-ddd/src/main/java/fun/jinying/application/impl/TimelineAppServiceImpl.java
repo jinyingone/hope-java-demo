@@ -1,6 +1,6 @@
 package fun.jinying.application.impl;
 
-import fun.jinying.application.TimelineService;
+import fun.jinying.application.TimelineAppService;
 import fun.jinying.domain.feed.factory.FeedFactory;
 import fun.jinying.domain.feed.model.*;
 import fun.jinying.domain.feed.repository.FeedRepository;
@@ -20,13 +20,13 @@ import java.util.stream.Collectors;
  * @create: 2020-03-12 11:53
  **/
 @Component
-public class TimelineServiceImpl implements TimelineService {
+public class TimelineAppServiceImpl implements TimelineAppService {
     private FeedRepository feedRepository;
     private UserRepository userRepository;
     private RelationRepository relationRepository;
     private FeedFactory feedFactory;
 
-    public TimelineServiceImpl(FeedRepository feedRepository, UserRepository userRepository, RelationRepository relationRepository, FeedFactory feedFactory) {
+    public TimelineAppServiceImpl(FeedRepository feedRepository, UserRepository userRepository, RelationRepository relationRepository, FeedFactory feedFactory) {
         this.feedRepository = feedRepository;
         this.userRepository = userRepository;
         this.relationRepository = relationRepository;
