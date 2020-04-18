@@ -7,5 +7,5 @@ import java.io.Serializable;
  * @author: sjy
  * @create: 2020-03-01 17:13
  **/
-public interface Event extends Serializable {
+public interface DomainEvent extends Serializable {
 }

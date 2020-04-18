@@ -1,6 +1,6 @@
 package fun.jinying.domain.feed.model;
 
-import fun.jinying.domain.shard.model.Event;
+import fun.jinying.domain.shard.model.DomainEvent;
 import lombok.Data;
 
 /**
@@ -9,7 +9,7 @@ import lombok.Data;
  * @create: 2020-03-06 23:08
  **/
 @Data
-public class FeedEvent implements Event {
+public class FeedEvent implements DomainEvent {
     private Feed feed;
     private FeedEventTypeEnum type;
 }

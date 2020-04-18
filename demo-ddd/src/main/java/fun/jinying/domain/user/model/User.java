@@ -22,14 +22,29 @@ public class User implements Entity {
     private Date updateTime;
 
 
+    public UserEvent register(){
+        UserRegisteredEvent userRegisteredEvent = new UserRegisteredEvent();
+        userRegisteredEvent.setUserId(this.userId.toString());
+        userRegisteredEvent.setType(UserEventTypeEnum.REGISGERED);
+        return userRegisteredEvent;
+    }
+
     /**
      * 登录
      *
      * @param user
      * @return
      */
-    public LoginStatusEnum login(User user) {
-        return LoginStatusEnum.SUCCESS;
+    public DomainEvent userLoggedEvent(User user) {
+        UserLoggedEvent event = new UserLoggedEvent();
+        event.setUserId(this.userId.toString());
+        event.setType(UserEventTypeEnum.LOGED);
+        return event;
+    }
+
+    public DomainEvent updateUserName(String userName){
+        this.userName = userName;
+
     }
 
     /**
