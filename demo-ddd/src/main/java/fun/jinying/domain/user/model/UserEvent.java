@@ -1,6 +1,6 @@
 package fun.jinying.domain.user.model;
 
-import fun.jinying.domain.shard.model.Event;
+import fun.jinying.domain.shard.model.DomainEvent;
 import lombok.Data;
 
 /**
@@ -9,7 +9,7 @@ import lombok.Data;
  * @create: 2020-03-01 17:12
  **/
 @Data
-public class UserEvent implements Event {
+public class UserEvent implements DomainEvent {
     private UserEventTypeEnum type;
     private String userId;
     private Long timestamp = System.currentTimeMillis();
