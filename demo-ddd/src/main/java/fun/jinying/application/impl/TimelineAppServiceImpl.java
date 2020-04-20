@@ -7,7 +7,7 @@ import fun.jinying.domain.feed.repository.FeedRepository;
 import fun.jinying.domain.relation.model.Relation;
 import fun.jinying.domain.relation.repository.RelationRepository;
 import fun.jinying.domain.user.repository.UserRepository;
-import fun.jinying.interfaces.feed.ListTimelineCmd;
+import fun.jinying.interfaces.feed.ListTimelineQuery;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,7 +36,7 @@ public class TimelineAppServiceImpl implements TimelineAppService {
     }
 
     @Override
-    public List<Feed> listTimeline(ListTimelineCmd cmd) {
+    public List<Feed> listTimeline(ListTimelineQuery cmd) {
         Integer logUserId = Integer.valueOf(cmd.getLogUserId());
         List<TimelineItem> timelineItems = feedRepository.listTimeLine(logUserId, new Date(-cmd.getScore()), cmd.getCount());
         return timelineItems.stream()
@@ -63,7 +63,7 @@ public class TimelineAppServiceImpl implements TimelineAppService {
     }
 
     @Override
-    public int countTimeline(ListTimelineCmd cmd) {
+    public int countTimeline(ListTimelineQuery cmd) {
         Integer logUserId = Integer.valueOf(cmd.getLogUserId());
         return feedRepository.countTimelineItems(logUserId);
     }

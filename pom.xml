@@ -12,6 +12,7 @@
         <module>demo-mongodb</module>
         <module>demo-gateway</module>
         <module>demo-es</module>
+        <module>demo-ddd</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

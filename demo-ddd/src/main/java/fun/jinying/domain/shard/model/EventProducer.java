@@ -5,7 +5,7 @@ package fun.jinying.domain.shard.model;
  * @author: sjy
  * @create: 2020-03-01 17:39
  **/
-public interface EventProducer<T extends Event> {
+public interface EventProducer<T extends DomainEvent> {
     /**
      * 发送事件
      *

@@ -4,7 +4,7 @@ import fun.jinying.application.FeedAppService;
 import fun.jinying.application.TimelineAppService;
 import fun.jinying.domain.feed.model.Feed;
 import fun.jinying.interfaces.common.PageAndList;
-import fun.jinying.interfaces.feed.ListTimelineCmd;
+import fun.jinying.interfaces.feed.ListTimelineQuery;
 import fun.jinying.interfaces.feed.PublishCmd;
 import fun.jinying.interfaces.feed.RepostCmd;
 import fun.jinying.interfaces.feed.facade.FeedFacade;
@@ -48,7 +48,7 @@ public class FeedFacadeImpl implements FeedFacade {
     }
 
     @Override
-    public PageAndList listTimeline(ListTimelineCmd cmd) {
+    public PageAndList listTimeline(ListTimelineQuery cmd) {
         List<Feed> list = timelineAppService.listTimeline(cmd);
         int newCount = timelineAppService.countTimeline(cmd);
         PageAndList<Feed, FeedDTO> pageAndList = new PageAndList<>();

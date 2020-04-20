@@ -1,5 +1,6 @@
 package fun.jinying.domain.user.model;
 
+import fun.jinying.domain.shard.model.DomainEvent;
 import fun.jinying.domain.shard.model.Entity;
 import lombok.Data;
 
@@ -44,7 +45,7 @@ public class User implements Entity {
 
     public DomainEvent updateUserName(String userName){
         this.userName = userName;
-
+        return null;
     }
 
     /**

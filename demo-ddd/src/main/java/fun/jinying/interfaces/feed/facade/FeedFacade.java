@@ -1,7 +1,7 @@
 package fun.jinying.interfaces.feed.facade;
 
 import fun.jinying.interfaces.common.PageAndList;
-import fun.jinying.interfaces.feed.ListTimelineCmd;
+import fun.jinying.interfaces.feed.ListTimelineQuery;
 import fun.jinying.interfaces.feed.PublishCmd;
 import fun.jinying.interfaces.feed.RepostCmd;
 import fun.jinying.interfaces.feed.facade.dto.FeedDTO;
@@ -34,5 +34,5 @@ public interface FeedFacade {
      * @param cmd
      * @return
      */
-    PageAndList listTimeline(ListTimelineCmd cmd);
+    PageAndList listTimeline(ListTimelineQuery cmd);
 }

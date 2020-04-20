@@ -2,7 +2,7 @@ package fun.jinying.application;
 
 import fun.jinying.domain.feed.model.Feed;
 import fun.jinying.domain.feed.model.FeedEvent;
-import fun.jinying.interfaces.feed.ListTimelineCmd;
+import fun.jinying.interfaces.feed.ListTimelineQuery;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public interface TimelineAppService {
      * @param cmd 请求命令
      * @return feed列表
      */
-    List<Feed> listTimeline(ListTimelineCmd cmd);
+    List<Feed> listTimeline(ListTimelineQuery cmd);
 
     /**
      * 最新的feed数量
@@ -26,7 +26,7 @@ public interface TimelineAppService {
      * @param cmd
      * @return
      */
-    int countTimeline(ListTimelineCmd cmd);
+    int countTimeline(ListTimelineQuery cmd);
 
     /**
      * 根据feed事件保存timeline

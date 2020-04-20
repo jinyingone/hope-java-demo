@@ -11,7 +11,7 @@ import javax.validation.constraints.Min;
  * @create: 2020-03-07 11:41
  **/
 @Data
-public class ListTimelineCmd {
+public class ListTimelineQuery {
     @Max(0)
     private long score;
     @Min(0)
