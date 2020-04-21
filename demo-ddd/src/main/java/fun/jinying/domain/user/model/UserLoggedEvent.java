@@ -9,6 +9,4 @@ import lombok.Data;
  **/
 @Data
 public class UserLoggedEvent extends UserEvent {
-    private User oldUser;
-    private UserUpdater updater;
 }

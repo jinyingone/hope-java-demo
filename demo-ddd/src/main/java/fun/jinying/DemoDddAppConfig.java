@@ -4,9 +4,8 @@ import fun.jinying.application.SmsService;
 import fun.jinying.domain.feed.factory.FeedFactory;
 import fun.jinying.domain.feed.repository.FeedRepository;
 import fun.jinying.domain.relation.factory.RelationFactory;
-import fun.jinying.domain.user.factory.UserFactory;
 import fun.jinying.domain.user.model.UserConfig;
-import fun.jinying.domain.user.repository.UserRepository;
+import fun.jinying.domain.user.model.UserService;
 import fun.jinying.infrastructure.OuterSmsService;
 import fun.jinying.infrastructure.message.FeedEventProducer;
 import fun.jinying.infrastructure.message.UserEventProducer;
@@ -33,8 +32,8 @@ public class DemoDddAppConfig {
     }
 
     @Bean
-    public UserFactory userFactory(UserRepository userRepository, UserConfig userConfig) {
-        return new UserFactory(userRepository, userConfig);
+    public UserService userService(){
+        return new UserService();
     }
 
     @Bean

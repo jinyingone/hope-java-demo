@@ -52,7 +52,7 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
     @Override
     public UserDTO update(UserDTO userDTO) {
         User user = userAppService.getUser(userDTO.getUserId()).orElseThrow(() -> new InterfaceException(InterfaceStatusEnum.USER_FAIL_NOT_EXISTS));
-        User updatedUser = userAppService.update(user, new UserUpdater(userDTO.getUserName(), userDTO.getAvatar(), userDTO.getPhone()));
+        User updatedUser = userAppService.update(userDTO.getUserId(), new UserUpdater(userDTO.getUserName(), userDTO.getAvatar(), userDTO.getPhone()));
         return new UserDTOAssembler().toDTO(updatedUser);
     }
 

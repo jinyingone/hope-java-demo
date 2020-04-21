@@ -2,9 +2,9 @@ package fun.jinying.application.impl;
 
 import fun.jinying.application.UserAppService;
 import fun.jinying.domain.shard.model.EventProducer;
-import fun.jinying.domain.user.factory.UserFactory;
 import fun.jinying.domain.user.model.User;
 import fun.jinying.domain.user.model.UserEvent;
+import fun.jinying.domain.user.model.UserService;
 import fun.jinying.domain.user.model.UserUpdater;
 import fun.jinying.domain.user.repository.UserRepository;
 import org.springframework.stereotype.Component;
@@ -19,22 +19,26 @@ import java.util.Optional;
  **/
 @Component
 public class UserAppServiceImpl implements UserAppService {
-    private UserFactory userFactory;
     private UserRepository userRepository;
     private EventProducer<UserEvent> userEventProducer;
+    private UserService userService;
 
-    public UserAppServiceImpl(UserFactory userFactory, UserRepository userRepository, EventProducer<UserEvent> userEventProducer) {
-        this.userFactory = userFactory;
+    public UserAppServiceImpl(UserRepository userRepository, EventProducer<UserEvent> userEventProducer, UserService userService) {
         this.userRepository = userRepository;
         this.userEventProducer = userEventProducer;
+        this.userService = userService;
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public User register(String phone) {
-        User user = userFactory.newUser(phone);
+        Integer userId = userRepository.nextUserId();
+        String userName = userService.getRandomUserName();
+        String avatar = userService.getRandomAvatar();
+        User user = User.createNewUser(userId, phone, userName, avatar);
         userRepository.saveUser(user);
-        userEventProducer.sendEvent(userFactory.userRegisteredEvent(user));
+        UserEvent userEvent = user.register();
+        userEventProducer.sendEvent(userEvent);
         return user;
     }
 
@@ -45,7 +49,7 @@ public class UserAppServiceImpl implements UserAppService {
 
     @Override
     public void login(User user) {
-        userEventProducer.sendEvent(userFactory.userLoggedEvent(user));
+        userEventProducer.sendEvent(user.login());
     }
 
     @Override
@@ -54,9 +58,11 @@ public class UserAppServiceImpl implements UserAppService {
     }
 
     @Override
-    public User update(User user, UserUpdater userUpdater) {
+    public User update(String userId, UserUpdater userUpdater) {
+        User user = userRepository.getByUserId(userId).orElseThrow(() -> new IllegalStateException(userId + "not exits"));
         userRepository.update(user.getUserId(), userUpdater);
-        userEventProducer.sendEvent(userFactory.userUpdatedEvent(user, userUpdater));
+        userEventProducer.sendEvent(user.updateUserName(userUpdater.getUserName()));
         return user;
     }
+
 }

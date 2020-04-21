@@ -50,5 +50,5 @@ public interface UserAppService {
      * @param userUpdater
      * @return
      */
-    User update(User user, UserUpdater userUpdater);
+    User update(String user, UserUpdater userUpdater);
 }

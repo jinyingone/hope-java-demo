@@ -1,6 +1,7 @@
 package fun.jinying.domain.feed.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @description: feed发布事件

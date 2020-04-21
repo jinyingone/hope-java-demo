@@ -9,8 +9,8 @@ import lombok.Data;
  * @author: sjy
  * @create: 2020-03-02 22:10
  **/
-@AllArgsConstructor
 @Data
+@AllArgsConstructor
 public class UserUpdater implements Vo {
     private String userName;
     private String avatar;
