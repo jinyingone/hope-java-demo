@@ -13,6 +13,7 @@
         <module>demo-gateway</module>
         <module>demo-es</module>
         <module>demo-ddd</module>
+        <module>demo-nio</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
