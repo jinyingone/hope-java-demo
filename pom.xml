@@ -14,6 +14,7 @@
         <module>demo-es</module>
         <module>demo-ddd</module>
         <module>demo-nio</module>
+        <module>demo-webservice</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
