@@ -1,7 +1,7 @@
 package fun.jinying.ws;
 
-import jinying.fun.ws.GetCountryRequest;
-import jinying.fun.ws.GetCountryResponse;
+import fun.jinying.ws.country.GetCountryRequest;
+import fun.jinying.ws.country.GetCountryResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -14,7 +14,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
  */
 @Endpoint
 public class CountryEndpoint {
-    private static final String NAMESPACE_URI = "http://fun.jinying/ws/country";
+    private static final String NAMESPACE_URI = "http://jinying.fun/ws/country";
 
     private CountryRepository countryRepository;
 

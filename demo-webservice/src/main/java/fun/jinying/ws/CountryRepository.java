@@ -1,7 +1,7 @@
 package fun.jinying.ws;
 
-import jinying.fun.ws.Country;
-import jinying.fun.ws.Currency;
+import fun.jinying.ws.country.Country;
+import fun.jinying.ws.country.Currency;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
