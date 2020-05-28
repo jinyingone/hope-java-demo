@@ -12,9 +12,7 @@ import org.apache.cxf.jaxws.endpoint.dynamic.JaxWsDynamicClientFactory;
 public class CxfClientTest {
     public static void main(String[] args) throws Exception {
         JaxWsDynamicClientFactory dcflient = JaxWsDynamicClientFactory.newInstance();
-
         Client client = dcflient.createClient("http://localhost:8080/ws/countries.wsdl");
-
         GetCountryRequest request = new GetCountryRequest();
         request.setName("Spain");
         Object[] objects = client.invoke("getCountry", request);
