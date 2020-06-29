@@ -1,19 +1,20 @@
 package fun.jinying.nio;
 
+import org.junit.Test;
+
 import java.io.File;
 import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author jy
  * @date 2020/4/28
  */
-class ZeroCopyFileTransportTest {
+public class ZeroCopyFileTransportTest {
 
-    @org.junit.jupiter.api.Test
-    void copy() throws IOException {
+    @Test
+   public void copy() throws IOException {
         ZeroCopyFileTransport zeroCopyFileTransport = new ZeroCopyFileTransport();
-        zeroCopyFileTransport.copy(new File("/Users/jy/IdeaProjects/hope-java-demo/demo-nio/src/main/java/fun/jinying/nio/ZeroCopyFileTransport.java"),new File("/tmp/ZeroCopyFileTransport.java"));
+        zeroCopyFileTransport.copy(new File("D:\\idea\\hope-java-demo\\demo-nio\\src\\test\\java\\fun\\jinying\\nio\\ZeroCopyFileTransportTest.java"),
+                new File("D:\\ZeroCopyFileTransportTest.java"));
     }
 }
