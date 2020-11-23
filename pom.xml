@@ -16,6 +16,7 @@
         <module>demo-nio</module>
         <module>demo-webservice</module>
         <module>demo-axon</module>
+        <module>demo-mqtt</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

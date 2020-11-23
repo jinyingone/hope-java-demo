@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings version="2.1" xmlns="http://java.sun.com/xml/ns/jaxb">
+  <!--
+
+此文件是由 JavaTM Architecture for XML Binding (JAXB) 引用实现 v2.3.2 生成的
+请访问 <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a> 
+在重新编译源模式时, 对此文件的所有修改都将丢失。
+生成时间: 2020.05.29 时间 04:36:49 PM CST 
+
+  -->
+  <bindings scd="x-schema::tns" xmlns:tns="http://jinying.fun/ws/country">
+    <schemaBindings map="false">
+      <package name="fun.jinying.ws.country"/>
+    </schemaBindings>
+    <bindings scd="tns:getCountryRequest">
+      <class ref="fun.jinying.ws.country.GetCountryRequest"/>
+    </bindings>
+    <bindings scd="tns:getCountryResponse">
+      <class ref="fun.jinying.ws.country.GetCountryResponse"/>
+    </bindings>
+    <bindings scd="~tns:country">
+      <class ref="fun.jinying.ws.country.Country"/>
+    </bindings>
+    <bindings scd="~tns:currency">
+      <typesafeEnumClass ref="fun.jinying.ws.country.Currency"/>
+    </bindings>
+  </bindings>
+</bindings>
+
