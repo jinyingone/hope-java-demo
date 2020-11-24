@@ -1,5 +1,6 @@
 package fun.jinying.demo.mqtt;
 
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.mqtt.MqttConnAckMessage;
@@ -22,6 +23,7 @@ import java.util.List;
  * @author jy
  * @date 2020/11/20
  */
+@ChannelHandler.Sharable
 public class MqttHandlers extends SimpleChannelInboundHandler<MqttMessage> {
     public static final MqttHandlers INSTANCE = new MqttHandlers();
 
@@ -59,18 +61,15 @@ public class MqttHandlers extends SimpleChannelInboundHandler<MqttMessage> {
     }
 
     private void connect(ChannelHandlerContext ctx, MqttConnectMessage msg) {
-        String s = msg.payload().clientIdentifier();
-        String s1 = msg.payload().userName();
-        byte[] bytes = msg.payload().passwordInBytes();
+        String clientIdentifier = msg.payload().clientIdentifier();
+        String userName = msg.payload().userName();
+        String password = new String(msg.payload().passwordInBytes());
+
+        System.out.println(clientIdentifier + " " + userName + " " + password);
 
         MqttFixedHeader connAckFixedHeaderRes = new MqttFixedHeader(MqttMessageType.CONNACK, false, MqttQoS.AT_MOST_ONCE, false, 0);
         MqttConnAckVariableHeader connAckVariableHeader = new MqttConnAckVariableHeader(MqttConnectReturnCode.CONNECTION_ACCEPTED, false);
         MqttConnAckMessage ackMessage = new MqttConnAckMessage(connAckFixedHeaderRes, connAckVariableHeader);
         ctx.channel().writeAndFlush(ackMessage);
-    }
-
-    @Override
-    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        super.channelInactive(ctx);
     }
 }
