@@ -98,7 +98,7 @@ public class MyMqttHandlers extends SimpleChannelInboundHandler<MqttMessage> {
         channels.forEach(channel -> {
             MqttPublishVariableHeader variableHeader = new MqttPublishVariableHeader(topic, 0);
             ByteBuf payload = Unpooled.copiedBuffer(messageData, StandardCharsets.UTF_8);
-            MqttFixedHeader fixedHeader = new MqttFixedHeader(MqttMessageType.PUBLISH, false, MqttQoS.AT_MOST_ONCE, false, 0);
+            MqttFixedHeader fixedHeader = new MqttFixedHeader(MqttMessageType.PUBLISH, false, MqttQoS.AT_LEAST_ONCE, false, 0);
 
             MqttPublishMessage mqttPublishMessage = new MqttPublishMessage(fixedHeader, variableHeader, payload);
             channel.writeAndFlush(mqttPublishMessage);
