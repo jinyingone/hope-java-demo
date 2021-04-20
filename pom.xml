@@ -17,6 +17,7 @@
         <module>demo-webservice</module>
         <module>demo-axon</module>
         <module>demo-mqtt</module>
+        <module>demo-lucene</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
